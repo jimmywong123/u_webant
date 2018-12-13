@@ -13,7 +13,6 @@ module.exports = {
   },
   haveHeaderSearch: false,
   haveNotice: false,
-  // wechatAppid: 'wxd06828f807669da0',
-  wechatAppid: 'wx9be764d4929b3ee3', // test
+  wechatAppid: 'xxxxx',
   
 }
