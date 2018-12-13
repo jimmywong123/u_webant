@@ -1,0 +1,401 @@
+@import '~antd/lib/style/themes/default.less';
+
+.flex {
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+}
+
+.m-loop(@n, @i:0, @m:~'') when (@i <= @n) {
+  .mt@{i}@{m} {
+      margin-top: 0.6rem * @i;
+  }
+  .mb@{i}@{m} {
+      margin-bottom: 0.6rem * @i; 
+  }
+  .ml@{i}@{m} {
+      margin-left: 0.6rem * @i;
+  }
+  .mr@{i}@{m} {
+      margin-right: 0.6rem * @i; 
+  }
+  .mx@{i}@{m} {
+      margin-left: 0.6rem * @i !important;
+      margin-right: 0.6rem * @i !important; 
+  }
+  .my@{i}@{m} {
+      margin-top: 0.6rem * @i  ;
+      margin-bottom: 0.6rem * @i !important; 
+  }
+  .pt@{i}@{m} {
+      padding-top: 0.6rem * @i; 
+  }
+  .pb@{i}@{m} {
+      padding-bottom: 0.6rem * @i; 
+  }
+  .pl@{i}@{m} {
+      padding-left: 0.6rem * @i;
+  }
+  .pr@{i}@{m} {
+      padding-right: 0.6rem * @i;
+  }
+  .px@{i}@{m} {
+      padding-left: 0.6rem * @i !important;
+      padding-right: 0.6rem * @i !important; 
+  }
+  .py@{i}@{m} {
+      padding-top: 0.6rem * @i !important;
+      padding-bottom: 0.6rem * @i !important; 
+  }
+  .mx-@{i}@{m} {
+      margin-left: -0.6rem * @i !important;
+      margin-right: -0.6rem * @i !important; 
+  }
+  .p@{i}@{m} {
+      padding: 0.6rem * @i !important;
+  }
+  .m@{i}@{m} {
+      margin: 0.6rem * @i !important;
+  }
+  .mt@{i}vh@{m} {
+      margin-top: 1vh * @i;
+  }
+  .mb@{i}vh@{m} {
+      margin-bottom: 1vh * @i; 
+  }
+  .ml@{i}vh@{m} {
+      margin-left: 1vh * @i;
+  }
+  .mr@{i}vh@{m} {
+      margin-right: 1vh * @i; 
+  }
+  .mx@{i}vh@{m} {
+      margin-left: 1vh * @i !important;
+      margin-right: 1vh * @i !important; 
+  }
+  .my@{i}vh@{m} {
+      margin-top: 1vh * @i  ;
+      margin-bottom: 1vh * @i !important; 
+  }
+  .pt@{i}vh@{m} {
+      padding-top: 1vh * @i; 
+  }
+  .pb@{i}vh@{m} {
+      padding-bottom: 1vh * @i; 
+  }
+  .pl@{i}vh@{m} {
+      padding-left: 1vh * @i;
+  }
+  .pr@{i}vh@{m} {
+      padding-right: 1vh * @i;
+  }
+  .px@{i}vh@{m} {
+      padding-left: 1vh * @i !important;
+      padding-right: 1vh * @i !important; 
+  }
+  .py@{i}vh@{m} {
+      padding-top: 1vh * @i !important;
+      padding-bottom: 1vh * @i !important; 
+  }
+  .mx-@{i}vh@{m} {
+      margin-left: -1vh * @i !important;
+      margin-right: -1vh * @i !important; 
+  }
+  .m-loop(@n, (@i + 1), @m);
+}
+
+.w_h(@n, @i:0, @m:~'') when (@i <= @n) {
+  .w@{i}@{m} {
+      width: 0.6rem * @i;
+  }
+  .u-h@{i}@{m} {
+      height: 0.6rem * @i;
+  }
+  .t@{i}@{m} {
+      top: 0.6rem * @i;
+  }
+  .l@{i}@{m} {
+      left: 0.6rem * @i;
+  }
+  .r@{i}@{m} {
+      right: 0.6rem * @i;
+  }
+  .b@{i}@{m} {
+      bottom: 0.6rem * @i;
+  }
+  .w_h(@n, (@i + 1), @m);
+}
+
+.tlbr-auto(@m) {
+  .l-auto@{m} {
+      left: auto;
+  }
+  .t-auto@{m} {
+      top: auto;
+  }
+  .b-auto@{m} {
+      bottom: auto;
+  }
+  .r-auto@{m} {
+      right: auto;
+  }
+}
+
+
+.full-width, .w100p {
+  width: 100%;
+}
+.full-height, .h100p {
+  height: 100%;
+}
+.half-width, .w50p {
+  width: 50%;
+}
+.fit {
+  max-width: 100%;
+}
+.h1_2 {
+  height: 0.3rem;
+}
+.l50 {
+  left: 50%;
+} 
+.l-50 {
+  left: -50%;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.mr-auto {
+  margin-right: auto;
+}
+.mt-auto {
+  margin-top: auto;
+}
+.ml-bottom {
+  margin-bottom: auto;
+}
+.mx-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.pt1_6 {
+  padding-top: 0.1rem;
+}
+.mb1_6 {
+  margin-bottom: 0.1rem;
+}
+
+.m-loop(15, 0, ~'');
+.w_h(30, 0, ~'');
+.tlbr-auto(~'-sm');
+
+.mt-20 {
+  margin-top: -12rem;
+}
+
+
+.img-placeholder {
+  padding-top: 56.25%;
+}
+
+
+.navy-400 {
+  color: #e6e7e8;
+}
+
+.navy-500 {
+  color: #95959e;
+}
+
+.navy-600 {
+  color: #626369;
+}
+
+.navy-700 {
+  color: #353535;
+}
+
+.navy-900 {
+  color: #020621;
+}
+.hover-black:hover{
+  color:#000000
+}
+
+.white {
+  color: #fff;
+}
+
+.black {
+  color: #000;
+}
+
+.grey-dark {
+  color: #3d3d66;
+}
+
+.link-grey-dark {
+  color: #3D3D66;
+}
+
+.green-dark {
+  color: #020621;
+}
+
+.bg-navy-900 {
+  background-color: #020621;
+}
+.bg-navy-700 {
+  background-color: #353535;
+}
+.bg-navy-400 {
+  background-color: #e6e7e8;
+}
+.bg-black_17 {
+  background-color: rgba(0,0,0,0.17);
+}
+.bg-white_10 {
+  background-color: rgba(255,255,255,0.1);
+}
+.bg-navy-300 {
+  background-color: #EFEFF3;
+}
+
+.bg-navy-200 {
+  background-color: #f7f7f9;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+.bg-green {
+  background-color: #2bde73;
+}
+
+.bg-green-400 {
+  background-color: #2bde73;
+}
+
+.dark-grey-500 {
+  color: #656868;
+}
+
+.green-700 {
+  color: #05AF3C;
+}
+
+.bg-ksr-green-700 {
+  background-color: #05AF3C;
+}
+
+.bg-grey {
+  background-color: #f1eeea;
+}
+
+.bg-grey-light {
+  background-color: #f7f5f2;
+}
+
+.bg-grey-100 {
+  background-color: #fbfbfa;
+}
+
+
+.hover-navy-500:hover {
+  color: #95959e;
+}
+
+.red {
+  color: #fd003b;
+}
+
+
+
+.display(@m) {
+  .flex@{m} {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+  }
+  .block@{m} {
+      display: block;
+  }
+  .inline-block@{m} {
+      display: inline-block;
+  }
+  .inline-flex@{m} {
+      display: -webkit-inline-box;
+      display: -webkit-inline-flex;
+      display: -moz-inline-flex;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+  }
+
+  .display-inline@{m} {
+      display: inline;
+  }
+  .display-none@{m} {
+      display: none;
+  }
+  .display-table@{m} {
+      display: table;
+  }
+  .hide@{m} {
+      display: none;
+  }
+}
+
+.u-hide {
+  display: none;
+}
+
+.display(~'');
+
+@media (max-width: @screen-sm) {
+  .m-loop(15, 0, ~'-sm');
+  .w_h(30, 0, ~'-sm');
+  .tlbr-auto(~'-sm');
+  .w100p {
+    width: 100%;
+  }
+  .w50p {
+    width: 50%;
+  }
+  .display(~'-sm');
+}
+@media screen and (max-width: @screen-lg) and (min-width: @screen-md) {
+  .m-loop(15, 0, ~'-md');
+  .w_h(30, 0, ~'-md');
+  .tlbr-auto(~'-md');
+  .w100p {
+    width: 100%;
+  }
+  .w50p {
+    width: 50%;
+  }
+  .display(~'-md');
+}
+@media (min-width: @screen-lg) {
+  .m-loop(15, 0, ~'-lg');
+  .w_h(30, 0, ~'-lg');
+  .tlbr-auto(~'-lg');
+  .w100p {
+    width: 100%;
+  }
+  .w50p {
+    width: 50%;
+  }
+  .display(~'-lg');
+}
+
+

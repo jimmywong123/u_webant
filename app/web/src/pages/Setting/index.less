@@ -1,0 +1,28 @@
+@import '~antd/lib/style/themes/default.less';
+
+.prefixIcon {
+  font-size: @font-size-base;
+  color: @disabled-color;
+}
+
+.getCaptcha {
+  display: block;
+  width: 100%;
+}
+
+.avatarUploader {
+  width: 200px;
+  height: 200px;
+}
+
+.avatarUploader {
+  :global { 
+    .ant-upload {
+      width: 200px;
+      height: 200px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
