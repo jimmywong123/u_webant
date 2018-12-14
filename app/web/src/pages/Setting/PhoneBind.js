@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import Support from '@/components/Support';
 import { checkPhone, getSupports } from '@/services/agent';
 
-import MobileCaptcha from '@/components/Captcha/MobileCaptcha';
+import MobileCaptcha from '@/components/MobileCaptcha';
 
 const FormItem = Form.Item;
 
@@ -92,7 +92,7 @@ class PhoneBind extends PureComponent {
    
     return ( 
       <div>
-        { list.length > 0 ? (<h2 className="pt3">{intl.get('the.account.has.been')}</h2>) : (<></>) }
+        { list.length > 0 ? (<h2 className="pt3">{intl.get('the.account.has.been')}</h2>) : (null) }
         { list.map( item => (
           <Tag style={{ marginBottom: '15px' }} key={item} closable={list.length > 1} onClose={(e) => this.handleClose(e, item)}>
             {item}

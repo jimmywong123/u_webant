@@ -6,7 +6,7 @@ import intl from 'react-intl-universal';
 import classNames from 'classnames';
 import { checkEmail } from '@/services/agent';
 
-import EmailCaptcha from '@/components/Captcha/EmailCaptcha';
+import EmailCaptcha from '@/components/EmailCaptcha';
 
 const FormItem = Form.Item;
 
@@ -83,7 +83,7 @@ class EmailBind extends PureComponent {
    
     return ( 
       <div>
-        { list.length > 0 ? (<h2 className="pt3">{intl.get('the.account.has.been1544407957040')}</h2>) : (<></>) }
+        { list.length > 0 ? (<h2 className="pt3">{intl.get('the.account.has.been1544407957040')}</h2>) : null }
         { list.map( (item, i) => (
           <Tag style={{ marginBottom: '15px' }} key={`${item + i}`} closable={list.length > 1} onClose={(e) => this.handleClose(e, item)}>
             {item}

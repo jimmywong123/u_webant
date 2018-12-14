@@ -9,7 +9,7 @@ import { Divider, message } from 'antd';
 import intl from 'react-intl-universal';
 import { connect } from 'dva';
 import Cropper from '@/components/Cropper';
-import EditableInput from '@/components/Editable/EditableInput';
+import EditableInput from '@/components/EditableInput';
 import styles from './index.less';
 import { uploadAttachment, uploadToken } from '@/services/api';
 

@@ -7,9 +7,9 @@ import { where } from '@/utils'
 import { getSystemPath } from '@/services/base';
 import intl from 'react-intl-universal';
 import styles from '../../index.less';
-import ShareAppMessage from '@/components/Wechat/ShareAppMessage';
-import MobileCaptcha from '@/components/Captcha/MobileCaptcha';
-import EmailCaptcha from '@/components/Captcha/EmailCaptcha';
+import ShareAppMessage from '@/components/ShareAppMessage';
+import MobileCaptcha from '@/components/MobileCaptcha';
+import EmailCaptcha from '@/components/EmailCaptcha';
 
 const { TabPane } = Tabs
 
@@ -130,7 +130,6 @@ class CompanyPage extends Component {
         </div>
         {whereNow === 'wechat' ? (<ShareAppMessage
           getWechatJsConfig={getWechatJsConfig}
-          jsApiList={["onMenuShareAppMessage"]}
           title={intl.get('hiredchina.com.invit')}
           desc={intl.get('{nickname}.invites.y', {nickname, name})}
           imgUrl='http://image.hiredchina.com/hc_logo_300x300.jpg'

@@ -9,7 +9,8 @@ class ShareAppMessage extends Component {
     // eslint-disable-next-line no-plusplus
     ++this.scriptLoaderCount;
     if (this.scriptLoaderCount === 1) {
-      const { jsApiList, title, desc, imgUrl, success, cancel, getWechatJsConfig } = this.props;
+      const jsApiList = ["onMenuShareAppMessage"];
+      const { title, desc, imgUrl, success, cancel, getWechatJsConfig } = this.props;
       getWechatJsConfig({
         jsApiList,
         url: window.location.href
@@ -64,12 +65,10 @@ class ShareAppMessage extends Component {
 
   render() {
     return (
-      <>
-        <Script
-          url="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"
-          onLoad={this.handleScriptLoad}
-        />
-      </>
+      <Script
+        url="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"
+        onLoad={this.handleScriptLoad}
+      />
     )
   }
 }

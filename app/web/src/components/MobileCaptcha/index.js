@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { Form, Input, Row, Col, Button, Icon } from 'antd';
 import intl from 'react-intl-universal';
 import Support from '../Support';
-import styles from './index.less';
 import Delay from '../_utils/delay'
 
 const FormItem = Form.Item;
@@ -153,7 +152,7 @@ class MobileCaptcha extends PureComponent {
             <Col span={9}>
               <Button
                 disabled={count}
-                className={styles.getCaptcha}
+                style={{ display: 'block', width: '100%'}}
                 size="large"
                 onClick={this.onGetCaptcha}  
               >

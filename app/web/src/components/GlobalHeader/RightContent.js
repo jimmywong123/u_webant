@@ -106,7 +106,7 @@ export default class GlobalHeaderRight extends PureComponent {
         </Tooltip> */}
         {
           currentUser.nickname ? (
-            <>
+            <div>
               {
                 haveNotice && (
                   <NoticeIcon
@@ -154,7 +154,7 @@ export default class GlobalHeaderRight extends PureComponent {
                   <span className={styles.name}>{currentUser.nickname}</span>
                 </span>
               </Dropdown>
-            </>
+            </div>
           ) : (
             <a
               href={loginPageUrl || '/user/login'}

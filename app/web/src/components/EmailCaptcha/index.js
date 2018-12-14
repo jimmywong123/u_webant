@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Form, Input, Row, Col, Button, Icon } from 'antd';
 import intl from 'react-intl-universal';
-import styles from './index.less';
 import Delay from '../_utils/delay'
 
 const FormItem = Form.Item;
@@ -100,59 +99,57 @@ class EmailCaptcha extends PureComponent {
     const { count, emailTips } = this.state;
 
     return ( 
-      <div className={styles.login}>
-        <Form style={{ textAlign: "left"}}>
-          <FormItem
-            extra={emailTips}
-          >
-            {getFieldDecorator(
-              "email", 
-              {
-                rules: [{
-                  type: 'email', message: intl.get('it.is.not.valid.e-ma'),
-                }, {
-                  required: true, message: intl.get('please.input.your.e-'),
-                }]
-              }
-            )(<Input 
-              placeholder={intl.get("email")} 
-              size='large'
-              disabled={count > 0}
-              prefix={<Icon type="inbox" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              onChange={this.onEmailChange}
-              ref={node => {this.emailInput = node}}
-            />)}
-          </FormItem>
-          <FormItem
-            extra={intl.get(captchaTips)}
-          >
-            <Row gutter={8}>
-              <Col span={15}>
-                {getFieldDecorator('captcha', {
-                  rules: [{ required: true, message: intl.get("please.input.the.cap")}],
-                })(
-                  <Input 
-                    size='large'
-                    placeholder={intl.get("captcha")} 
-                    prefix={<Icon type="message" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    onChange={this.onCaptchaChange}
-                  />
-                )}
-              </Col>
-              <Col span={9}>
-                <Button
-                  disabled={count}
-                  className={styles.getCaptcha}
-                  size="large"
-                  onClick={this.onGetCaptcha}  
-                >
-                  {count ? `${count} s` : intl.get('get.captcha')}
-                </Button>
-              </Col>
-            </Row>
-          </FormItem>
-        </Form>
-      </div>
+      <Form style={{ textAlign: "left"}}>
+        <FormItem
+          extra={emailTips}
+        >
+          {getFieldDecorator(
+            "email", 
+            {
+              rules: [{
+                type: 'email', message: intl.get('it.is.not.valid.e-ma'),
+              }, {
+                required: true, message: intl.get('please.input.your.e-'),
+              }]
+            }
+          )(<Input 
+            placeholder={intl.get("email")} 
+            size='large'
+            disabled={count > 0}
+            prefix={<Icon type="inbox" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            onChange={this.onEmailChange}
+            ref={node => {this.emailInput = node}}
+          />)}
+        </FormItem>
+        <FormItem
+          extra={intl.get(captchaTips)}
+        >
+          <Row gutter={8}>
+            <Col span={15}>
+              {getFieldDecorator('captcha', {
+                rules: [{ required: true, message: intl.get("please.input.the.cap")}],
+              })(
+                <Input 
+                  size='large'
+                  placeholder={intl.get("captcha")} 
+                  prefix={<Icon type="message" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  onChange={this.onCaptchaChange}
+                />
+              )}
+            </Col>
+            <Col span={9}>
+              <Button
+                disabled={count}
+                style={{ display: 'block', width: '100%'}}
+                size="large"
+                onClick={this.onGetCaptcha}  
+              >
+                {count ? `${count} s` : intl.get('get.captcha')}
+              </Button>
+            </Col>
+          </Row>
+        </FormItem>
+      </Form>
     )
   }
 }
