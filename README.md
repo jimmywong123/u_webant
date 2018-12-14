@@ -1,4 +1,4 @@
-# u_web
+# u_webant
 
 
 
@@ -35,7 +35,7 @@ $ npm run rel
 先在服务器上创建好对应的文件夹
 
 ```bash
-$ mkdir /home/egg/u_web && cd /home/egg/u_web
+$ mkdir /home/egg/u_webant && cd /home/egg/u_webant
 ```
 
 在本地项目
