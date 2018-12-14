@@ -103,7 +103,6 @@ export default {
   // extra configuration for egg
   runtimePublicPath: true, // 值为 true 时使用 HTML 里指定的 window.publicPath。
   hash: true,
-  outputPath: '../public',
   // 配置后会生成 manifest.json，option 传给 https://www.npmjs.com/package/webpack-manifest-plugin。 比如：
   // manifest: {
   //   fileName: '../../config/manifest.json',
