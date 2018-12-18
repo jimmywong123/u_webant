@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Layout } from 'antd';
 
 import PropTypes from 'prop-types';
 
@@ -136,6 +137,6 @@ export default class Script extends PureComponent {
   }
 
   render() {
-    return <div />;
+    return <Layout style={{ display: 'none', height: '0', width: '0', top: '-999999'}} />;
   }
 }
