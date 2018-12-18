@@ -29,7 +29,6 @@ class App extends Component {
   getCurrentLocale = () => {
     let currentLocale = intl.determineLocale({
       urlLocaleKey: 'lan',
-      cookieLocaleKey: 'lan',
     });
     const { LS } = this.props;
     if (LS) {
