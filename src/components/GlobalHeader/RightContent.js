@@ -97,7 +97,7 @@ export default class GlobalHeaderRight extends PureComponent {
           </a>
         </Tooltip> */}
         {currentUser.nickname ? (
-          <div>
+          <span>
             {haveNotice && (
               <NoticeIcon
                 className={styles.action}
@@ -131,7 +131,6 @@ export default class GlobalHeaderRight extends PureComponent {
                 />
               </NoticeIcon>
             )}
-
             <Dropdown overlay={menu}>
               <span className={`${styles.action} ${styles.account}`}>
                 <Avatar
@@ -143,7 +142,7 @@ export default class GlobalHeaderRight extends PureComponent {
                 <span className={styles.name}>{currentUser.nickname}</span>
               </span>
             </Dropdown>
-          </div>
+          </span>
         ) : (
           <a href={loginPageUrl || '/user/login'} className={styles.action}>
             {intl.get('login')}
