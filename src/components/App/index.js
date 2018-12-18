@@ -19,13 +19,6 @@ class App extends Component {
     this.loadLocales();
   }
 
-  uploadLocaleType = changeTo => {
-    const { LS } = this.props;
-    if (LS) {
-      LS.setItem('lang_type', changeTo);
-    }
-  };
-
   getCurrentLocale = () => {
     let currentLocale = intl.determineLocale({
       urlLocaleKey: 'lan',
@@ -37,7 +30,6 @@ class App extends Component {
     currentLocale = currentLocale || 'en-US';
 
     currentLocale = fixLan(currentLocale);
-    this.uploadLocaleType(currentLocale);
     return currentLocale;
   };
 
