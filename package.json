@@ -31,6 +31,8 @@
     "react-media": "^1.8.0",
     "react-router-dom": "^4.3.1",
     "react-transition-group": "^2.5.0",
+    "u_webant_base": "0.0.11",
+    "umi_base_config": "0.0.4",
     "util_react_request": "0.0.1",
     "util_react_web": "0.0.6",
     "util_storage": "0.0.1"
