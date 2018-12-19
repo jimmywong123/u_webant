@@ -1,6 +1,7 @@
 import intl from 'react-intl-universal';
 import React, { Component } from 'react';
 import { LocaleProvider } from 'antd';
+import { url } from 'util_react_web'
 
 // 设置国际化
 import enUS from 'antd/lib/locale-provider/en_US';
@@ -27,9 +28,10 @@ class App extends Component {
   };
 
   getCurrentLocale = () => {
-    let currentLocale = intl.determineLocale({
-      urlLocaleKey: 'lan',
-    });
+    const { getPageQuery } = url;
+    const query = getPageQuery();
+    const { lan } = query;
+    let currentLocale = lan;
     let needUpdate = false;
     if (currentLocale) {
       needUpdate = true;
