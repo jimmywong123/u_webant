@@ -1,17 +1,12 @@
 import intl from 'react-intl-universal';
 import React, { Component } from 'react';
 import { LocaleProvider } from 'antd';
-import { url } from 'util_react_web'
+import { url } from 'util_react_web';
 
 // 设置国际化
 import enUS from 'antd/lib/locale-provider/en_US';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
-
-const fixLan = lan => {
-  const arr = lan.split('-');
-  return `${arr[0]}-${arr[1].toUpperCase()}`;
-};
 
 class App extends Component {
   state = { initDone: false };
@@ -28,7 +23,7 @@ class App extends Component {
   };
 
   getCurrentLocale = () => {
-    const { getPageQuery } = url;
+    const { getPageQuery, fixLan } = url;
     const query = getPageQuery();
     const { lan } = query;
     let currentLocale = lan;
@@ -42,7 +37,7 @@ class App extends Component {
     }
     currentLocale = currentLocale || 'en-US';
 
-    currentLocale = fixLan(currentLocale);
+    currentLocale = fixLan({lan: currentLocale});
     if (needUpdate) {
       this.uploadLocaleType(currentLocale);
     }

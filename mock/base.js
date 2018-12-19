@@ -249,7 +249,7 @@ export default {
       "nickname": "Thomas Lau",
       "lastAt": "2018-11-16T02:32:59.000Z",
       "isLock": false,
-      "lastLanguage": "en",
+      "lastLanguage": "zh",
       "headimgurl": "http://image.hiredchina.com/FpxXVRh34w3zIfxyMG-app_bLRpd",
       "genderType": 0,
       "createdAt": "2018-11-16T02:32:59.000Z",
