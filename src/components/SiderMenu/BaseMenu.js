@@ -138,6 +138,9 @@ export default class BaseMenu extends PureComponent {
       className,
       collapsed,
       onClick,
+      handleOpenChange, 
+      style, 
+      menuData
     } = this.props;
     // if pathname can't match, use the nearest parent's key
     let selectedKeys = this.getSelectedMenuKeys(pathname);
@@ -150,7 +153,6 @@ export default class BaseMenu extends PureComponent {
         openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
       };
     }
-    const { handleOpenChange, style, menuData } = this.props;
     const cls = classNames(className, {
       'top-nav-menu': mode === 'horizontal',
     });

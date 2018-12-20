@@ -9,6 +9,7 @@ import HeaderDropdown from '../HeaderDropdown';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
 import BaseMenu from '../SiderMenu/BaseMenu';
+import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils';
 
 export default class GlobalHeaderRight extends PureComponent {
   getNoticeData() {
@@ -74,16 +75,21 @@ export default class GlobalHeaderRight extends PureComponent {
       haveHeaderSearch,
       haveNotice,
       loginPageUrl,
-      menuData
+      menuData,
+      isMobile
     } = this.props;
 
     const menu = (
       <BaseMenu {...this.props} menuData={menuData.inside} className={styles.menu} selectedKeys={[]} onClick={onMenuClick} mode='vertical' />
     );
+    const flatMenuKeys = getFlatMenuKeys(menuData.right || []);
     const noticeData = this.getNoticeData();
     // const unreadMsg = this.getUnreadData(noticeData);
     return (
       <div className={styles.right}>
+        { !isMobile && (
+          <BaseMenu {...this.props} menuData={menuData.right} flatMenuKeys={flatMenuKeys} style={{display: 'inline-block', verticalAlign: 'middle'}}/>
+        )}
         {haveHeaderSearch && (
           <HeaderSearch
             className={`${styles.action} ${styles.search}`}

@@ -5,7 +5,6 @@ import BaseMenu from '../SiderMenu/BaseMenu';
 import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils';
 import intl from 'react-intl-universal';
 import styles from './index.less';
-import UMenu from '../UMenu';
 
 export default class TopNavHeader extends PureComponent {
   state = {
@@ -42,7 +41,7 @@ export default class TopNavHeader extends PureComponent {
                 maxWidth,
               }}
             > 
-              <BaseMenu {...this.props} menuData={menuData.left} flatMenuKeys={flatMenuKeys} className={styles.menu} />
+              <BaseMenu {...this.props} menuData={menuData.left} flatMenuKeys={flatMenuKeys} />
             </div>
           </div>
           <RightContent {...this.props} />
