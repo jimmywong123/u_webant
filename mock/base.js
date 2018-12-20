@@ -259,5 +259,16 @@ export default {
     "msg": "请求成功",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6Mn0sImV4cCI6MTU0NTIxNDU4NiwiaWF0IjoxNTQ0NjA5Nzg2fQ.o7XepgzaqTgNPIhOXSxpbJmE1eH-3odXHJ_YvUEF88E"
   },
+  'GET /api/v1/base/%2Fsystem': {
+    "code": 0,
+    "data": {
+      "nameKey": "loginapi",
+      "titleKey": "login",
+      "keyworkKey": "login",
+      "descriptionKey": "login",
+      "logoUrl": "http://image.hiredchina.com/logo.jpg",
+      "copyrightKey": "",
+      "recordCode": ""
+    }
+  }
 }
-

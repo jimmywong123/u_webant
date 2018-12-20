@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import DocumentTitle from 'react-document-title';
+import DocumentMete from 'react-document-meta';
 import { ContainerQuery } from 'react-container-query';
 import { Layout } from 'antd';
 import memoizeOne from 'memoize-one';
@@ -10,7 +10,6 @@ import { enquireScreen, unenquireScreen } from 'enquire-js';
 import pathToRegexp from 'path-to-regexp';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import logo from '../assets/logo.jpg';
 import Authorized from '@/utils/Authorized';
 import Footer from './Footer';
 import Header from './Header';
@@ -83,6 +82,7 @@ const screenQuery = {
 
 @connect(({ global }) => ({
   collapsed: global.collapsed,
+  system: global.system
 }))
 class BasicLayout extends PureComponent {
   constructor(props) {
@@ -124,6 +124,9 @@ class BasicLayout extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'user/fetchCurrent',
+    });
+    dispatch({
+      type: 'global/fetchSystem',
     });
     // dispatch({
     //   type: 'setting/getSetting',
@@ -200,12 +203,31 @@ class BasicLayout extends PureComponent {
 
   getPageTitle = pathname => {
     const currRouterData = this.matchParamsPath(pathname);
-
+    const { system: { titleKey } } = this.props;
+    let title = 'HiredChina.com';
+    if(titleKey) {
+      title = intl.get(titleKey)
+    }
     if (!currRouterData) {
-      return 'Ant Design Pro';
+      return title;
     }
     const message = intl.get(currRouterData.locale || currRouterData.name);
-    return `${message} - Ant Design Pro`;
+    return `${message} - ${title}`;
+  };
+
+  getMeta = pathname => {
+    const title = this.getPageTitle(pathname);
+
+    const { system: { keyworkKey, descriptionKey } } = this.props;
+    return {
+      title,
+      description: descriptionKey && intl.get(descriptionKey),
+      meta: {
+        name: {
+          keywords: keyworkKey && intl.get(keyworkKey)
+        }
+      }
+    };
   };
 
   matchParamsPath = pathname => {
@@ -219,8 +241,9 @@ class BasicLayout extends PureComponent {
     const {
       children,
       location: { pathname },
+      system
     } = this.props;
-
+    const { logoUrl } = system
     const { isMobile, menuData } = this.state;
     const routerConfig = this.matchParamsPath(pathname);
 
@@ -235,7 +258,7 @@ class BasicLayout extends PureComponent {
           <Header
             menuData={menuData}
             handleMenuCollapse={this.handleMenuCollapse}
-            logo={logo}
+            logo={logoUrl}
             isMobile={isMobile}
             {...this.props}
           />
@@ -253,7 +276,7 @@ class BasicLayout extends PureComponent {
     );
     return (
       <App getI18n={getI18n} LS={LS}>
-        <DocumentTitle title={this.getPageTitle(pathname)}>
+        <DocumentMete { ...this.getMeta(pathname) }>
           <ContainerQuery query={screenQuery}>
             {params => (
               <Context.Provider value={this.getContext()}>
@@ -261,7 +284,7 @@ class BasicLayout extends PureComponent {
               </Context.Provider>
             )}
           </ContainerQuery>
-        </DocumentTitle>
+        </DocumentMete>
       </App>
     );
   }

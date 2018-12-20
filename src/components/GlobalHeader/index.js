@@ -24,7 +24,7 @@ export default class GlobalHeader extends PureComponent {
     this.triggerResizeEvent();
   };
   render() {
-    const { collapsed, isMobile, logo, loginPageUrl, settingUrl } = this.props;
+    const { collapsed, isMobile, logo } = this.props;
     let { redirect } = getPageQuery();
     if (redirect) {
       const redirectUrlParams = new URL(redirect);
