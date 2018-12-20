@@ -1,6 +1,6 @@
 @import '~antd/lib/style/themes/default.less';
 
-@nav-header-height: 64px;
+@nav-header-height: @layout-header-height;
 
 .logo {
   height: @nav-header-height;
@@ -8,15 +8,14 @@
   line-height: @nav-header-height;
   padding-left: (@menu-collapsed-width - 32px) / 2;
   transition: all 0.3s;
-  background: #002140;
+  background: white;
   overflow: hidden;
   img {
     display: inline-block;
     vertical-align: middle;
-    height: 50px;
+    height: 32px;
   }
   h1 {
-    color: white;
     display: inline-block;
     vertical-align: middle;
     font-size: 20px;
@@ -31,6 +30,7 @@
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   position: relative;
   z-index: 10;
+  background: white;
   &.fixSiderbar {
     position: fixed;
     top: 0;
@@ -67,7 +67,7 @@
     line-height: @nav-header-height;
   }
   .drawer .drawer-content {
-    background: #001529;
+    background: white;
   }
   .ant-menu-inline-collapsed {
     & > .ant-menu-item .sider-menu-item-img + span,

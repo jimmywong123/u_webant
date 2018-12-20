@@ -5,11 +5,12 @@ import Animate from 'rc-animate';
 import { connect } from 'dva';
 import GlobalHeader from '@/components/GlobalHeader';
 import TopNavHeader from '@/components/TopNavHeader';
+
 import { stringify } from 'qs';
-import styles from './Header.less';
-import Authorized from '@/utils/Authorized';
 import { getSystemPath } from '@/services/base';
 import { getPageQuery } from '@/utils';
+
+import styles from './Header.less';
 
 const { Header } = Layout;
 
@@ -18,6 +19,7 @@ const { Header } = Layout;
   collapsed: global.collapsed,
   fetchingNotices: loading.effects['global/fetchNotices'],
   notices: global.notices,
+  system: global.system
 }))
 class HeaderView extends PureComponent {
   state = {
@@ -57,18 +59,21 @@ class HeaderView extends PureComponent {
         redirectUrlParams.origin === data
           ? `${data}/user/login`
           : `${data}/user/login?${stringify({ redirect })}`;
-      const settingUrl =
-        redirectUrlParams.origin === data
-          ? `${data}/setting`
-          : `${data}/setting?${stringify({ redirect })}`;
       const updateState = {
         initDone: true,
         loginPageUrl,
-        settingUrl,
       };
       this.setState(updateState);
     });
   }
+
+  getHeadWidth = () => {
+    const { isMobile, collapsed, fixedHeader } = this.props;
+    if (isMobile || !fixedHeader || layout === 'topmenu') {
+      return '100%';
+    }
+    return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
+  };
 
   handleNoticeClear = noticeKey => {
     message.success(`${intl.get('cleared')} ${noticeKey ? intl.get(noticeKey) : ''}`);
@@ -81,16 +86,6 @@ class HeaderView extends PureComponent {
 
   handleMenuClick = ({ key }) => {
     const { dispatch } = this.props;
-    // TODO
-    // if (key === 'userCenter') {
-    //   router.push('/account/center');
-    //   return;
-    // }
-    // TODO
-    // if (key === 'userinfo') {
-    //   router.push('/account/settings/base');
-    //   return;
-    // }
     if (key === 'logout') {
       dispatch({
         type: 'login/logout',
@@ -121,13 +116,11 @@ class HeaderView extends PureComponent {
           this.setState({
             visible: true,
           });
-        }
-        if (scrollTop > 300 && visible) {
+        } else if (scrollTop > 300 && visible) {
           this.setState({
             visible: false,
           });
-        }
-        if (scrollTop < 300 && !visible) {
+        } else if (scrollTop < 300 && !visible) {
           this.setState({
             visible: true,
           });
@@ -139,27 +132,28 @@ class HeaderView extends PureComponent {
   };
 
   render() {
-    const { isMobile, handleMenuCollapse } = this.props;
-    const { visible, initDone, loginPageUrl, settingUrl } = this.state;
+    const { isMobile, handleMenuCollapse, fixedHeader, system: {titleKey} } = this.props;
+    const { visible, initDone, loginPageUrl } = this.state;
+    const width = this.getHeadWidth();
+
     const HeaderDom = visible ? (
       <div className={styles.header}>
-        <Header style={{ padding: 0, width: '100%' }}>
+        <Header style={{ padding: 0, width }} className={fixedHeader ? styles.fixedHeader : ''}>
           {isMobile ? (
             <GlobalHeader
               loginPageUrl={loginPageUrl}
-              settingUrl={settingUrl}
               onCollapse={handleMenuCollapse}
               onNoticeClear={this.handleNoticeClear}
               onMenuClick={this.handleMenuClick}
               onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              titleKey={titleKey}
               {...this.props}
             />
           ) : (
             <TopNavHeader
+              titleKey={titleKey}
               loginPageUrl={loginPageUrl}
-              settingUrl={settingUrl}
               mode="horizontal"
-              Authorized={Authorized}
               onCollapse={handleMenuCollapse}
               onNoticeClear={this.handleNoticeClear}
               onMenuClick={this.handleMenuClick}

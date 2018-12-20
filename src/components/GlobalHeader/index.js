@@ -4,7 +4,7 @@ import Link from 'umi/link';
 import Debounce from 'lodash-decorators/debounce';
 import styles from './index.less';
 import RightContent from './RightContent';
-import { getPageQuery } from '../_utils/pathTools';
+import { url } from 'util_react_web';
 
 export default class GlobalHeader extends PureComponent {
   componentWillUnmount() {
@@ -25,6 +25,7 @@ export default class GlobalHeader extends PureComponent {
   };
   render() {
     const { collapsed, isMobile, logo } = this.props;
+    const { getPageQuery } = url
     let { redirect } = getPageQuery();
     if (redirect) {
       const redirectUrlParams = new URL(redirect);

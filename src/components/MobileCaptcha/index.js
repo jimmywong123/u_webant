@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import { Form, Input, Row, Col, Button, Icon } from 'antd';
 import intl from 'react-intl-universal';
 import Support from '../Support';
-import Delay from '../_utils/delay';
+import { delay } from 'util_react_web';
 
 const FormItem = Form.Item;
-const delay500 = new Delay(500);
+const delay500 = new delay(500);
 
 @Form.create()
 class MobileCaptcha extends PureComponent {

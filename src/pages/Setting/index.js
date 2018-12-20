@@ -1,4 +1,5 @@
 /**
+ * name: 'setting'
  * Routes:
  *  - ./src/routes/Authorized.js
  * authority: [ 'logined' ]
@@ -13,7 +14,6 @@ import PhoneBind from './PhoneBind';
 import EmailBind from './EmailBind';
 import WechatBind from './WechatBind';
 import Base from './Base';
-import DocumentTitle from 'react-document-title';
 import DocumentMete from 'react-document-meta';
 
 const { Content, Sider } = Layout;

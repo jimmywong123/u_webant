@@ -25,11 +25,19 @@
 }
 
 .menu {
-  :global(.anticon) {
-    margin-right: 8px;
-  }
-  :global(.ant-dropdown-menu-item) {
-    width: 160px;
+  :global {
+    .anticon {
+      margin-right: 8px;
+    }
+    .ant-dropdown-menu-item {
+      width: 160px;
+    }
+    .ant-dropdown-menu-item-group-list {
+      padding: 0;
+      .ant-dropdown-menu-item {
+        padding-left: 25px;
+      }
+    }
   }
 }
 
@@ -102,6 +110,13 @@ i.trigger {
 }
 
 @media only screen and (max-width: @screen-md) {
+  .menu {
+    :global {
+      .anticon{
+        margin-right: 8px;
+      }
+    }
+  }
   .header {
     :global(.ant-divider-vertical) {
       vertical-align: unset;
@@ -127,6 +142,8 @@ i.trigger {
           margin-right: 0;
         }
       }
+      
     }
+    
   }
 }

@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import intl from 'react-intl-universal';
-import { Tag, Menu, Icon, Dropdown, Avatar } from 'antd';
+import { Tag, Avatar } from 'antd';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import NoticeIcon from '../NoticeIcon';
 import HeaderSearch from '../HeaderSearch';
+import HeaderDropdown from '../HeaderDropdown';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
+import BaseMenu from '../SiderMenu/BaseMenu';
 
 export default class GlobalHeaderRight extends PureComponent {
   getNoticeData() {
@@ -40,6 +42,28 @@ export default class GlobalHeaderRight extends PureComponent {
     return groupBy(newNotices, 'type');
   }
 
+  getUnreadData = noticeData => {
+    const unreadMsg = {};
+    Object.entries(noticeData).forEach(([key, value]) => {
+      if (!unreadMsg[key]) {
+        unreadMsg[key] = 0;
+      }
+      if (Array.isArray(value)) {
+        unreadMsg[key] = value.filter(item => !item.read).length;
+      }
+    });
+    return unreadMsg;
+  };
+
+  changeReadState = clickedItem => {
+    const { id } = clickedItem;
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'global/changeNoticeReadState',
+      payload: id,
+    });
+  };
+
   render() {
     const {
       currentUser,
@@ -50,26 +74,14 @@ export default class GlobalHeaderRight extends PureComponent {
       haveHeaderSearch,
       haveNotice,
       loginPageUrl,
-      settingUrl,
+      menuData
     } = this.props;
 
     const menu = (
-      <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-        <Menu.Item key="userCenter">
-          <a href={settingUrl || '/setting'}>
-            <Icon type="user" />
-            {intl.get('account.center')}
-          </a>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="logout">
-          <Icon type="logout" />
-          {intl.get('logout')}
-        </Menu.Item>
-      </Menu>
+      <BaseMenu {...this.props} menuData={menuData.inside} className={styles.menu} selectedKeys={[]} onClick={onMenuClick} mode='vertical' />
     );
     const noticeData = this.getNoticeData();
-
+    // const unreadMsg = this.getUnreadData(noticeData);
     return (
       <div className={styles.right}>
         {haveHeaderSearch && (
@@ -97,7 +109,7 @@ export default class GlobalHeaderRight extends PureComponent {
           </a>
         </Tooltip> */}
         {currentUser.nickname ? (
-          <span>
+          <React.Fragment>
             {haveNotice && (
               <NoticeIcon
                 className={styles.action}
@@ -131,7 +143,7 @@ export default class GlobalHeaderRight extends PureComponent {
                 />
               </NoticeIcon>
             )}
-            <Dropdown overlay={menu}>
+            <HeaderDropdown overlay={menu}>
               <span className={`${styles.action} ${styles.account}`}>
                 <Avatar
                   size="small"
@@ -141,8 +153,8 @@ export default class GlobalHeaderRight extends PureComponent {
                 />
                 <span className={styles.name}>{currentUser.nickname}</span>
               </span>
-            </Dropdown>
-          </span>
+            </HeaderDropdown>
+          </React.Fragment>
         ) : (
           <a href={loginPageUrl || '/user/login'} className={styles.action}>
             {intl.get('login')}

@@ -2,7 +2,10 @@ import React, { PureComponent } from 'react';
 import Link from 'umi/link';
 import RightContent from '../GlobalHeader/RightContent';
 import BaseMenu from '../SiderMenu/BaseMenu';
+import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils';
+import intl from 'react-intl-universal';
 import styles from './index.less';
+import UMenu from '../UMenu';
 
 export default class TopNavHeader extends PureComponent {
   state = {
@@ -16,8 +19,9 @@ export default class TopNavHeader extends PureComponent {
   }
 
   render() {
-    const { theme, contentWidth, logo } = this.props;
+    const { theme, contentWidth, menuData, logo, titleKey } = this.props;
     const { maxWidth } = this.state;
+    const flatMenuKeys = getFlatMenuKeys(menuData.left || []);
     return (
       <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
         <div
@@ -30,15 +34,15 @@ export default class TopNavHeader extends PureComponent {
             <div className={styles.logo} key="logo" id="logo">
               <Link to="/">
                 <img src={logo} alt="logo" />
-                <h1>Ant Design Pro</h1>
+                <h1>{intl.get(titleKey|| '') || 'HiredChina.com'}</h1>
               </Link>
             </div>
             <div
               style={{
                 maxWidth,
               }}
-            >
-              <BaseMenu {...this.props} style={{ border: 'none', height: 64 }} />
+            > 
+              <BaseMenu {...this.props} menuData={menuData.left} flatMenuKeys={flatMenuKeys} className={styles.menu} />
             </div>
           </div>
           <RightContent {...this.props} />
