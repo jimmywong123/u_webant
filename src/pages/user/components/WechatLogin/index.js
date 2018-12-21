@@ -7,6 +7,9 @@ import intl from 'react-intl-universal';
 import style from './index.less';
 import { url } from '@/services/wechat';
 import Script from '@/components/Script';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 @connect(({ wechatLogin }) => ({ wechatLogin }))
 class WechatLogin extends PureComponent {
@@ -75,7 +78,7 @@ class WechatLogin extends PureComponent {
     return initDone && showBtn ? (
       <Button href={authUrl} block className={style.wechatBtn} size="large">
         <Icon type="wechat" />
-        {intl.get('use.wechat.login')}
+        {getIntl(intl, 'loginsys.use.wechat.login', 'Use wechat login')}
       </Button>
     ) : (
       <div>

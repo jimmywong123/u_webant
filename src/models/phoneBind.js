@@ -1,6 +1,9 @@
 import { xxxPhoneList, bindPhone, unbindPhone } from '@/services/api';
 import { message } from 'antd';
 import intl from 'react-intl-universal';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 export default {
   namespace: 'phoneBind',
@@ -55,9 +58,9 @@ export default {
         data: { errSms = '', succeed },
       } = yield call(bindPhone, { phone, captcha });
       if (succeed) {
-        message.success(intl.get('succeed'));
+        message.success(getIntl(intl, 'base.succeed', 'Succeed'));
       } else if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
       yield put({ type: 'fetch', payload: {} });
     },
@@ -72,9 +75,9 @@ export default {
         data: { succeed, errSms },
       } = JSON.parse(yield call(unbindPhone, phone));
       if (succeed) {
-        message.success(intl.get('succeed'));
+        message.success(getIntl(intl, 'base.succeed', 'Succeed'));
       } else if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
       yield put({ type: 'fetch', payload: { visible: !succeed } });
     },

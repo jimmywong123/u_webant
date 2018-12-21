@@ -10,6 +10,9 @@ import SelectLang from '../SelectLang';
 import styles from './index.less';
 import BaseMenu from '../SiderMenu/BaseMenu';
 import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 export default class GlobalHeaderRight extends PureComponent {
   getNoticeData() {
@@ -93,7 +96,7 @@ export default class GlobalHeaderRight extends PureComponent {
         {haveHeaderSearch && (
           <HeaderSearch
             className={`${styles.action} ${styles.search}`}
-            placeholder={intl.get('search')}
+            placeholder={getIntl(intl, 'base.search', 'Search')}
             dataSource={['123', '12314', '2123']}
             onSearch={value => {
               console.log('input', value); // eslint-disable-line
@@ -104,7 +107,7 @@ export default class GlobalHeaderRight extends PureComponent {
           />
         )}
         {/*         
-        <Tooltip title={intl.get('help')}>
+        <Tooltip title={getIntl(intl, 'base.help', 'Help')}>
           <a
             target="_blank"
             href="https://pro.ant.design/docs/getting-started"
@@ -124,8 +127,8 @@ export default class GlobalHeaderRight extends PureComponent {
                   console.log(item, tabProps); // eslint-disable-line
                 }}
                 locale={{
-                  emptyText: intl.get('no.notifications'),
-                  clear: intl.get('Clear'),
+                  emptyText: getIntl(intl, 'base.no.notifications', 'No notifications'),
+                  clear: getIntl(intl, 'base.clear', 'Clear'),
                 }}
                 onClear={onNoticeClear}
                 onPopupVisibleChange={onNoticeVisibleChange}
@@ -135,16 +138,16 @@ export default class GlobalHeaderRight extends PureComponent {
               >
                 <NoticeIcon.Tab
                   list={noticeData.notification}
-                  title={intl.get('notification')}
+                  title={getIntl(intl, 'base.notification', 'Notification')}
                   name="notification"
-                  emptyText={intl.get('you.have.viewed.all.')}
+                  emptyText={getIntl(intl, 'base.you.have.viewed.all.notifications', 'You have viewed all notifications.')}
                   emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
                 />
                 <NoticeIcon.Tab
                   list={noticeData.message}
-                  title={intl.get('message')}
+                  title={getIntl(intl, 'base.message', 'Message')}
                   name="message"
-                  emptyText={intl.get('you.have.viewed.all.1542349435507')}
+                  emptyText={getIntl(intl, 'base.you.have.viewed.all.messsages', 'You have viewed all messsages.')}
                   emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
                 />
               </NoticeIcon>
@@ -163,7 +166,7 @@ export default class GlobalHeaderRight extends PureComponent {
           </React.Fragment>
         ) : (
           <a href={loginPageUrl || '/user/login'} className={styles.action}>
-            {intl.get('login')}
+            {getIntl(intl, 'base.login', 'Login')}
           </a>
         )}
         <SelectLang className={styles.action} />

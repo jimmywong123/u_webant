@@ -31,10 +31,10 @@
     "react-media": "^1.9.2",
     "react-router-dom": "^4.3.1",
     "react-transition-group": "^2.5.0",
-    "u_webant_base": "^0.0.15",
+    "u_webant_base": "^0.0.21",
     "umi_base_config": "^0.0.4",
     "util_react_request": "^0.0.1",
-    "util_react_web": "0.0.10",
+    "util_react_web": "0.0.12",
     "util_storage": "^0.0.1"
   },
   "devDependencies": {

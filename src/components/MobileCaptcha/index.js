@@ -3,6 +3,9 @@ import { Form, Input, Row, Col, Button, Icon } from 'antd';
 import intl from 'react-intl-universal';
 import Support from '../Support';
 import { delay } from 'util_react_web';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const FormItem = Form.Item;
 const delay500 = new delay(500);
@@ -45,9 +48,11 @@ class MobileCaptcha extends PureComponent {
               data: { list },
             } = res;
             if (list.length === 1) {
-              this.setState({ mobileTips: intl.get('{phone}.registered,.', { phone }) });
+              const mobileTips = getIntl(intl, 'base.phone.registered', `${phone} registered, get the captcha to login`, { phone })
+              this.setState({ mobileTips });
             } else {
-              this.setState({ mobileTips: intl.get('{phone}.can.use,.get', { phone }) });
+              const mobileTips = getIntl(intl, 'base.phone.can.user', `${phone} can use, get the captcha to register`, { phone })
+              this.setState({ mobileTips });
             }
           });
         });
@@ -104,7 +109,7 @@ class MobileCaptcha extends PureComponent {
     const prefixSelector = (
       <Support
         getSupports={getSupports}
-        style={{ width: 150 }}
+        style={{ maxWidth: 150 }}
         disabled={count > 0}
         name="prefix"
         typeName="nationaal"
@@ -118,12 +123,12 @@ class MobileCaptcha extends PureComponent {
             rules: [
               {
                 required: true,
-                message: intl.get('please.enter.mobile.'),
+                message: getIntl(intl, 'base.please.type.in.mobile.number', 'Please type in mobile number!'),
               },
             ],
           })(
             <Input
-              placeholder={intl.get('mobile')}
+              placeholder={getIntl(intl, 'base.mobile', 'Mobile')}
               size="large"
               disabled={count > 0}
               addonBefore={prefixSelector}
@@ -134,28 +139,28 @@ class MobileCaptcha extends PureComponent {
             />
           )}
         </FormItem>
-        <FormItem extra={intl.get(captchaTips)}>
+        <FormItem extra={getIntl(intl, captchaTips, 'Mobile')}>
           <Row gutter={8}>
-            <Col span={15}>
+            <Col span={13}>
               {getFieldDecorator('captcha', {
-                rules: [{ required: true, message: intl.get('please.input.the.cap') }],
+                rules: [{ required: true, message: getIntl(intl, 'base.please.type.in.the.captcha.you.got', 'Please type in the captcha you got!') }],
               })(
                 <Input
                   size="large"
-                  placeholder={intl.get('captcha')}
+                  placeholder={getIntl(intl, 'base.captcha', 'Captcha')}
                   prefix={<Icon type="message" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   onChange={this.onCaptchaChange}
                 />
               )}
             </Col>
-            <Col span={9}>
+            <Col span={11}>
               <Button
                 disabled={count}
                 style={{ display: 'block', width: '100%' }}
                 size="large"
                 onClick={this.onGetCaptcha}
               >
-                {count ? `${count} s` : intl.get('get.captcha')}
+                {count ? `${count} s` : getIntl(intl, 'base.get.captcha', 'Get captcha')}
               </Button>
             </Col>
           </Row>

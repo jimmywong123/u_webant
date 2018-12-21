@@ -10,6 +10,9 @@ import styles from '../index.less';
 import ShareAppMessage from '@/components/ShareAppMessage';
 import MobileCaptcha from '@/components/MobileCaptcha';
 import EmailCaptcha from '@/components/EmailCaptcha';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { TabPane } = Tabs;
 
@@ -96,14 +99,14 @@ class CompanyPage extends Component {
           <Avatar src={user.headimgurl} className={styles.profileAvatar} />
           <h1 className="my2">{user.nickname}</h1>
           <Divider />
-          <h2 className="mb2">{intl.get('invites.you.to.manag')}</h2>
+          <h2 className="mb2">{getIntl(intl, 'loginsys.invites.you.to.manage.this.company', 'Invites you to manage this company in HiredChina.com')}</h2>
           <a target="_blank" href={companyHref} rel="noopener noreferrer">
             <Avatar src={company.logoimgurl} className={styles.companyAvatar} />
             <h1 className="my2">{company.name}</h1>
           </a>
 
           <div className="px4">
-            <Divider>{intl.get('if.you.are.the.hr')}</Divider>
+            <Divider>{getIntl(intl, 'loginsys.if.you.are.the.hr', 'If you are the HR')}</Divider>
           </div>
 
           <div className={styles.login}>
@@ -112,7 +115,7 @@ class CompanyPage extends Component {
                 tab={
                   <span>
                     <Icon type="phone" />
-                    {intl.get('login.by.mobile')}
+                    {getIntl(intl, 'loginsys.login.by.mobile', 'Login by mobile')}
                   </span>
                 }
                 key="mobile"
@@ -131,7 +134,7 @@ class CompanyPage extends Component {
                 tab={
                   <span>
                     <Icon type="mail" />
-                    {intl.get('login.by.email')}
+                    {getIntl(intl, 'loginsys.login.by.email', 'Login by E-mail')}
                   </span>
                 }
                 key="mail"
@@ -150,8 +153,8 @@ class CompanyPage extends Component {
           {whereNow === 'wechat' ? (
             <ShareAppMessage
               getWechatJsConfig={getWechatJsConfig}
-              title={intl.get('hiredchina.com.invit')}
-              desc={intl.get('{nickname}.invites.y', { nickname, name })}
+              title={getIntl(intl, 'loginsys.hiredchina.com.invite', 'HiredChina.com Invite')}
+              desc={getIntl(intl, 'loginsys.company.invite.share.desc', `${nickname} invites you to manage ${name} info in HiredChina.com`, { nickname, name })}
               imgUrl="http://image.hiredchina.com/hc_logo_300x300.jpg"
             />
           ) : (

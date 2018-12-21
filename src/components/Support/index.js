@@ -1,6 +1,9 @@
 import intl from 'react-intl-universal';
 import React, { Component } from 'react';
 import { Select } from 'antd';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { Option } = Select;
 
@@ -28,7 +31,7 @@ class Support extends Component {
         <Select style={style} disabled={disabled}>
           {list.map(item => (
             <Option key={item.titleKey} value={item.value}>
-              {intl.get(item.titleKey)}
+              {getIntl(intl, item.titleKey)}
             </Option>
           ))}
         </Select>

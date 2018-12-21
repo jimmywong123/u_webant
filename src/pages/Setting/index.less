@@ -23,3 +23,20 @@
     }
   }
 }
+
+
+@media (max-width: @screen-sm) {
+  .avatarUploader {
+    width: 130px;
+    height: 130px;
+    :global {
+      .ant-upload {
+        width: 130px;
+        height: 130px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,9 @@ import styles from './index.less';
 import PageLoading from '../PageLoading';
 import { getDefaultCollapsedSubMenus } from './SiderMenuUtils';
 import intl from 'react-intl-universal';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const BaseMenu = React.lazy(() => import('./BaseMenu'));
 const { Sider } = Layout;
@@ -55,11 +58,7 @@ export default class SiderMenu extends PureComponent {
       [styles.light]: theme === 'light',
     });
 
-    let title = 'HiredChina';
-    if (titleKey) {
-      title = intl.get(titleKey)
-    }
-
+    const title = getIntl(intl, titleKey, 'HiredChina');
 
     return (
       <Sider

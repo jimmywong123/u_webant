@@ -6,6 +6,9 @@ import classNames from 'classnames';
 import { checkEmail } from '@/services/agent';
 
 import EmailCaptcha from '@/components/EmailCaptcha';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const FormItem = Form.Item;
 
@@ -86,7 +89,7 @@ class EmailBind extends PureComponent {
     return (
       <div>
         {list.length > 0 ? (
-          <h2 className="pt3">{intl.get('the.account.has.been1544407957040')}</h2>
+          <h2 className="pt3">{getIntl(intl, 'loginsys.you.have.been.bound.emails', 'You have been bound Emails')}</h2>
         ) : null}
         {list.map((item, i) => (
           <Tag
@@ -99,7 +102,7 @@ class EmailBind extends PureComponent {
           </Tag>
         ))}
         <div className={classNames('py2', 'pr0-sm', 'pr5')}>
-          <Divider orientation="right">{intl.get('bind.new.email')}</Divider>
+          <Divider orientation="right">{getIntl(intl, 'loginsys.bind.new.email', 'Bind new Email')}</Divider>
           <div style={{ maxWidth: '400px' }}>
             <EmailCaptcha
               checkEmail={checkEmail}
@@ -111,7 +114,7 @@ class EmailBind extends PureComponent {
           </div>
         </div>
         <Modal
-          title={intl.get('type.in.the.number.y')}
+          title={getIntl(intl, 'loginsys.type.in.email', 'Please type in your E-mail.')}
           visible={visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -123,13 +126,13 @@ class EmailBind extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: intl.get('please.enter.email.'),
+                    message: getIntl(intl, 'loginsys.type.in.email', 'Please type in your E-mail.'),
                     type: 'email',
                   },
                 ],
               })(
                 <Input
-                  placeholder={intl.get('email')}
+                  placeholder={getIntl(intl, 'loginsys.email', 'email')}
                   size="large"
                   ref={node => {
                     this.emailInput = node;

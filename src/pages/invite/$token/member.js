@@ -9,6 +9,9 @@ import MobileCaptcha from '@/components/MobileCaptcha';
 import EmailCaptcha from '@/components/EmailCaptcha';
 import { getWechatJsConfig } from '@/services/api';
 import { checkPhone, getSupports, checkEmail } from '@/services/agent';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { TabPane } = Tabs;
 
@@ -72,13 +75,13 @@ class MemberPage extends Component {
         <Avatar src={user.headimgurl} className={styles.profileAvatar} />
         <h1 className="my2">{user.nickname}</h1>
         <Divider />
-        <h2 className="mb2">{intl.get('invites.you.to.use.t')}</h2>
+        <h2 className="mb2">{ getIntl(intl, 'loginsys.invites.you.to.use', 'Invites you to use the services of HiredChina.com')}</h2>
         <Avatar src={person.headimgurl} className={styles.profileAvatar} />
         <h1 className="my2">
           {person.firstName} {person.lastName}
         </h1>
         <div className="px4">
-          <Divider>{intl.get('if.you.are')}</Divider>
+          <Divider>{getIntl(intl, 'loginsys.if.you.are', 'If you are')}</Divider>
         </div>
         <div className={styles.login}>
           <Tabs type="card" defaultActiveKey="mobile">
@@ -86,7 +89,7 @@ class MemberPage extends Component {
               tab={
                 <span>
                   <Icon type="phone" />
-                  {intl.get('login.by.mobile')}
+                  {getIntl(intl, 'loginsys.login.by.mobile', 'Login by mobile')}
                 </span>
               }
               key="mobile"
@@ -105,7 +108,7 @@ class MemberPage extends Component {
               tab={
                 <span>
                   <Icon type="mail" />
-                  {intl.get('login.by.email')}
+                  {getIntl(intl, 'loginsys.login.by.email', 'Login by E-mail')}
                 </span>
               }
               key="mail"
@@ -124,8 +127,8 @@ class MemberPage extends Component {
         {whereNow === 'wechat' ? (
           <ShareAppMessage
             getWechatJsConfig={getWechatJsConfig}
-            title={intl.get('hiredchina.com.invit')}
-            desc={intl.get('{nickname}.invites.{', { nickname, firstName, lastName })}
+            title={getIntl(intl, 'loginsys.hiredchina.com.invite', 'HiredChina.com Invite')}
+            desc={getIntl(intl, 'loginsys.member.invite.share.desc', `${nickname} invites ${firstName} ${lastName} to use HiredChina.com`, { nickname, firstName, lastName })}
             imgUrl="http://image.hiredchina.com/hc_logo_300x300.jpg"
           />
         ) : (

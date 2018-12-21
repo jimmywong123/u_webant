@@ -3,34 +3,19 @@ import { Layout, Icon } from 'antd';
 import GlobalFooter from '@/components/GlobalFooter';
 
 const { Footer } = Layout;
-const FooterView = () => (
-  <Footer style={{ padding: 0 }}>
+const FooterView = (props) => (
+  <Footer>
     <GlobalFooter
-      links={[
-        {
-          key: 'Pro 首页',
-          title: 'Pro 首页',
-          href: 'https://pro.ant.design',
-          blankTarget: true,
-        },
-        {
-          key: 'github',
-          title: <Icon type="github" />,
-          href: 'https://github.com/ant-design/ant-design-pro',
-          blankTarget: true,
-        },
-        {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
-          blankTarget: true,
-        },
-      ]}
+      links={props.links}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+          Copyright <Icon type="copyright" /> {props.copyright}
         </Fragment>
       }
+      patents={
+        <a target="_blank" href='http://www.miitbeian.gov.cn/' style={{ color: 'rgba(0, 0, 0, 0.45)'}}>{props.recordCode || '粤ICP备16003809号-2'}</a>
+      }
+      social={props.social}
     />
   </Footer>
 );

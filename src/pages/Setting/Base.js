@@ -12,6 +12,9 @@ import Cropper from '@/components/Cropper';
 import EditableInput from '@/components/EditableInput';
 import styles from './index.less';
 import { uploadAttachment, uploadToken } from '@/services/api';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 @connect(({ user }) => ({
   currentUser: user.currentUser,
@@ -25,7 +28,7 @@ class Base extends PureComponent {
         data: { token, errSms, origin },
       } = res;
       if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       } else {
         this.setState({
           initDone: true,
@@ -60,7 +63,7 @@ class Base extends PureComponent {
         data: { errSms },
       } = res;
       if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
     });
     dispatch({

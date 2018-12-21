@@ -1,0 +1,57 @@
+@import '~antd/lib/style/themes/default.less';
+
+
+@media (max-width: @screen-sm) {
+  :global {
+    .ant-modal{
+      margin: 0;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+    }
+    .ant-modal-content {
+      background: none;
+      box-shadow: none;
+    }
+    .ant-modal-footer {
+      border-color: #666;
+      background-color: #444;
+      margin: 0;
+      padding-right: 0;
+      padding-left: 0;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      .ant-btn, .ant-btn-dashed {
+        background: none;
+        border: none;
+        color: #fff;
+        font-weight: 800;
+      }
+      
+    }
+    .ant-modal-body {
+      padding: 0;
+      height: 100%;
+      padding-bottom: 53px;
+    }
+  }
+  .main {
+    
+    :global {
+      .ant-modal{
+        margin: 0;
+
+      }
+      .ant-modal-content {
+        background-color: none;
+        box-shadow: none;
+      }
+    }
+  }
+}

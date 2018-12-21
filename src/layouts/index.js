@@ -26,6 +26,9 @@ import { LS } from '@/utils';
 import { getI18n } from '@/services/base';
 
 import styles from './index.less';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { Content } = Layout;
 
@@ -170,11 +173,7 @@ class BasicLayout extends PureComponent {
   getPageTitle = (pathname, breadcrumbNameMap) => {
     const currRouterData = this.matchParamsPath(pathname, breadcrumbNameMap);
 
-    const { system: { titleKey } } = this.props;
-    let title = 'HiredChina.com';
-    if(titleKey) {
-      title = intl.get(titleKey)
-    }
+    const title = this.getSystemTitle()
     if (!currRouterData) {
       return title;
     }
@@ -187,16 +186,23 @@ class BasicLayout extends PureComponent {
     return title;
   };
 
+  getSystemTitle = () => {
+    const { system: { titleKey } } = this.props;
+    return getIntl(intl, titleKey, 'Hired, China, Job')
+  }
+
   getMeta = (pathname, breadcrumbNameMap) => {
     const title = this.getPageTitle(pathname, breadcrumbNameMap);
-
     const { system: { keyworkKey, descriptionKey } } = this.props;
+    const keywords = getIntl(intl, keyworkKey, 'Hired, China, Job')
+    const description = getIntl(intl, descriptionKey, 'Hired, China, Job')
+
     return {
       title,
-      description: descriptionKey && intl.get(descriptionKey),
+      description,
       meta: {
         name: {
-          keywords: keyworkKey && intl.get(keyworkKey)
+          keywords,
         }
       }
     };
@@ -222,7 +228,7 @@ class BasicLayout extends PureComponent {
 
   render() {
     const {
-      system: { logoUrl, miniLogoUrl, titleKey },
+      system: { logoUrl, miniLogoUrl, recordCode, copyrightKey },
       navTheme,
       children,
       location: { pathname },
@@ -232,10 +238,14 @@ class BasicLayout extends PureComponent {
       allMenu,
       route: { routes },
       fixedHeader,
+      footerLinks,
+      social
     } = this.props;
 
     const routerConfig = this.getRouterAuthority(pathname, routes);
     const contentStyle = !fixedHeader ? { paddingTop: 0 } : {};
+    const copyright = getIntl(intl, copyrightKey, '2015 - 2018 HiredChina');
+
     const layout = (
       <Layout className={styles.layout}>
         {!isMobile ? null : (
@@ -245,7 +255,7 @@ class BasicLayout extends PureComponent {
             onCollapse={this.handleMenuCollapse}
             menuData={menuData}
             isMobile={isMobile}
-            titleKey={titleKey}
+            title={this.getSystemTitle()}
             allMenu={allMenu}
             {...this.props}
           />
@@ -271,7 +281,12 @@ class BasicLayout extends PureComponent {
               {children}
             </Authorized>
           </Content>
-          <Footer />
+          <Footer 
+            copyright={copyright} 
+            recordCode={recordCode} 
+            links={footerLinks}
+            social={social}
+          />
         </Layout>
       </Layout>
     );
@@ -291,12 +306,11 @@ class BasicLayout extends PureComponent {
   }
 }
 
-export default connect(({ global,  menu }) => ({
-  collapsed: global.collapsed,
-  system: global.system,
-  menuData: menu.menuData,
-  breadcrumbNameMap: menu.breadcrumbNameMap,
-  allMenu: menu.allMenu
+export default connect(({ 
+  global: {collapsed, system, social, footerLinks}, 
+  menu: {menuData, breadcrumbNameMap, allMenu} 
+}) => ({
+  collapsed, system, menuData, breadcrumbNameMap, allMenu, social, footerLinks
 }))(props => (
   <Media query="(max-width: 599px)">
     {isMobile => <BasicLayout {...props} isMobile={isMobile} />}

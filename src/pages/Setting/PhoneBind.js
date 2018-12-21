@@ -8,6 +8,9 @@ import Support from '@/components/Support';
 import { checkPhone, getSupports } from '@/services/agent';
 
 import MobileCaptcha from '@/components/MobileCaptcha';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const FormItem = Form.Item;
 
@@ -93,7 +96,7 @@ class PhoneBind extends PureComponent {
 
     return (
       <div>
-        {list.length > 0 ? <h2 className="pt3">{intl.get('the.account.has.been')}</h2> : null}
+        {list.length > 0 ? <h2 className="pt3">{getIntl(intl, 'loginsys.have.been.bound.mobiles', 'You have been bound mobiles')}</h2> : null}
         {list.map(item => (
           <Tag
             style={{ marginBottom: '15px' }}
@@ -105,7 +108,7 @@ class PhoneBind extends PureComponent {
           </Tag>
         ))}
         <div className={classNames('py2', 'pr0-sm', 'pr5')}>
-          <Divider orientation="right">{intl.get('bind.new.phone')}</Divider>
+          <Divider orientation="right">{getIntl(intl, 'loginsys.bind.new.phone', 'Bind new mobile')}</Divider>
           <div style={{ maxWidth: '400px' }}>
             <MobileCaptcha
               checkPhone={checkPhone}
@@ -118,7 +121,7 @@ class PhoneBind extends PureComponent {
           </div>
         </div>
         <Modal
-          title={intl.get('type.in.the.number.y')}
+          title={getIntl(intl, 'loginsys.delete.phone.title', 'Type in the number you want to delete')}
           visible={visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -130,14 +133,14 @@ class PhoneBind extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: intl.get('please.enter.mobile.'),
+                    message: getIntl(intl, 'loginsys.please.type.in.mobile.number', 'Please type in mobile number!'),
                     type: 'string',
                     pattern: /^[0-9]+$/,
                   },
                 ],
               })(
                 <Input
-                  placeholder={intl.get('mobile')}
+                  placeholder={getIntl(intl, 'loginsys.mobile', 'Mobile')}
                   size="large"
                   addonBefore={
                     <Support

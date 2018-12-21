@@ -1,6 +1,9 @@
 import { bindWebapp, bindWechat, unbindWechat, getWechatuser } from '@/services/api';
 import { message } from 'antd';
 import intl from 'react-intl-universal';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 export default {
   namespace: 'wechatBind',
@@ -45,9 +48,9 @@ export default {
         data: { errSms = '', succeed },
       } = yield call(fb, code);
       if (succeed) {
-        message.success(intl.get('succeed'));
+        message.success(getIntl(intl, 'base.succeed', 'Succeed'));
       } else if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
       yield put({ type: 'fetch' });
     },
@@ -57,9 +60,9 @@ export default {
         data: { succeed, errSms },
       } = JSON.parse(yield call(unbindWechat, payload));
       if (succeed) {
-        message.success(intl.get('succeed'));
+        message.success(getIntl(intl, 'base.succeed', 'Succeed'));
       } else if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
       yield put({ type: 'fetch' });
     },

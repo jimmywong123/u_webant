@@ -5,6 +5,9 @@ import { LS } from '@/utils';
 import { message } from 'antd';
 import intl from 'react-intl-universal';
 import { user } from 'u_webant_base';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const model = user({
   queryCurrent, reloadAuthorized, LS
@@ -19,7 +22,7 @@ model.effects = {
       LS.setItem('U_token', token);
       yield put({ type: 'fetchCurrent' });
     } else if (errSms) {
-      message.error(intl.get(errSms));
+      message.error(getIntl(intl, errSms));
     }
   },
   *updateNickname({ payload }, { call, put }) {
@@ -30,7 +33,7 @@ model.effects = {
       LS.setItem('U_token', token);
       yield put({ type: 'fetchCurrent' });
     } else if (errSms) {
-      message.error(intl.get(errSms));
+      message.error(getIntl(intl, errSms));
     }
   },
 }

@@ -1,7 +1,6 @@
 import React, { createElement } from 'react';
 import classNames from 'classnames';
 import { Button } from 'antd';
-import intl from 'react-intl-universal';
 import config from './typeConfig';
 import styles from './index.less';
 
@@ -41,7 +40,7 @@ class Exception extends React.PureComponent {
         </div>
         <div className={styles.content}>
           <h1>{title || config[pageType].title}</h1>
-          <div className={styles.desc}>{desc || intl.get(config[pageType].desc)}</div>
+          <div className={styles.desc}>{desc || config[pageType].desc}</div>
           <div className={styles.actions}>
             {actions ||
               createElement(

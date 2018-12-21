@@ -7,6 +7,9 @@ import intl from 'react-intl-universal';
 import styles from './index.less';
 import { url } from '@/services/wechat';
 import Script from '@/components/Script';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 @connect(({ wechatBind }) => ({ wechatBind }))
 class WechatBind extends PureComponent {
@@ -90,10 +93,10 @@ class WechatBind extends PureComponent {
           <Avatar src={wechatuser.headimgurl} className={styles.avatar} />
           <h1 className="my2">{wechatuser.nickname}</h1>
           <h3>
-            <Icon type="check-circle" /> {intl.get('bind.wechat.success')}
+            <Icon type="check-circle" /> {getIntl(intl, 'loginsys.bind.wechat.success', 'Bind wechat success')}
           </h3>
           <Button type="danger" block onClick={this.handleUnbindClick}>
-            {intl.get('remove.this.binding')}
+            {getIntl(intl, 'loginsys.remove.this.binding', 'Remove this. binding')}
           </Button>
         </div>
       );
@@ -101,7 +104,7 @@ class WechatBind extends PureComponent {
     return initDone && showBtn ? (
       <Button href={authUrl} block className={styles.wechatBtn} size="large">
         <Icon type="wechat" />
-        {intl.get('use.wechat.login')}
+        {getIntl(intl, 'loginsys.bind.my.wechat.now', 'Bind my Wechat now')}
       </Button>
     ) : (
       <div>

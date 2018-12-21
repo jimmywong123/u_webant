@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Icon, Upload, Modal, message, Button } from 'antd';
 import Cropper from 'react-cropper';
 import lrz from 'lrz';
@@ -6,13 +6,19 @@ import intl from 'react-intl-universal';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'cropperjs/dist/cropper.css';
 import request from './request';
+import { string } from 'util_react_web';
+import styles from './index.less';
+import Media from 'react-media';
+
+const { getIntl } = string
 
 function getBase64(img, callback) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
   reader.readAsDataURL(img);
 }
-class CropperWidget extends Component {
+
+class CropperWidget extends PureComponent {
   reqs = {};
 
   constructor(props) {
@@ -33,18 +39,9 @@ class CropperWidget extends Component {
   };
 
   handleChange = info => {
-    // const { fileList } = info
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
     }
-    // if (info.file.status === 'done') {
-    //   // Get this url from response in real world.
-    //   getBase64(info.file.originFileObj, imgUrl => this.setState({
-    //     srcCropper: imgUrl, // cropper的图片路径
-    //     editImageModalVisible: true, // 打开控制裁剪弹窗的变量，为true即弹窗
-    //     fileList,
-    //   }));
-    // }
   };
 
   // 点击保存的函数，需要在这里进行压缩
@@ -93,11 +90,11 @@ class CropperWidget extends Component {
     const { maxSize, imgType = 'jpeg|png|jpg' } = this.props;
     const isJPG = imgType.toLowerCase().indexOf(file.type.toLowerCase().replace('image/', '')) >= 0;
     if (!isJPG) {
-      message.error(intl.get('you.can.only.upload.', { type: imgType }));
+      message.error(getIntl(intl, 'base.you.can.only.upload.img.file', `You can only upload ${imgType} file!`, { type: imgType }));
     }
-    const isLtM = file.size / 1024 / 1024 < (maxSize || 2);
+    const isLtM = file.size / 1024 / 1024 < (maxSize || 10);
     if (!isLtM) {
-      message.error(intl.get('image.must.smaller.t', { num: maxSize }));
+      message.error(getIntl(intl, 'base.image.must.smaller.than.num.mb', `Image must smaller than ${maxSize}MB!`, { num: maxSize }));
     }
     getBase64(file, imgUrl =>
       this.setState({
@@ -120,40 +117,49 @@ class CropperWidget extends Component {
       viewMode,
       dragMode,
       aspectRatio,
-      minCanvasWidth,
-      minCanvasHeight,
-      minContainerWidth,
-      minContainerHeight,
       height,
       width,
       baseSize,
       imageUrl,
       avatarClassName,
       autoCropArea,
+      isMobile
     } = this.props;
+
+    let { 
+      minCanvasHeight,
+      minCanvasWidth,
+      minContainerWidth,
+      minContainerHeight,
+    } =this.props;
 
     const uploadButton = (
       <div>
         <Icon type={loading ? 'loading' : 'plus'} />
-        <div className="ant-upload-text">{intl.get('upload')}</div>
+        <div className="ant-upload-text">{getIntl(intl, 'base.upload', 'Upload')}</div>
       </div>
     );
-    const thisBaseSize = baseSize || 450;
+    let thisBaseSize = baseSize || 450;
+    if (isMobile) {
+      minCanvasHeight = minContainerHeight = document.body.offsetHeight - 53;
+      minCanvasWidth = minContainerWidth = document.body.offsetWidth;
+      thisBaseSize = '100%'
+    }
     const footer = (
       <div style={{ textAlign: 'center' }}>
         <Button style={{ float: 'left' }} onClick={this.hideModal}>
-          {intl.get('cancel')}
+          {getIntl(intl, 'base.cancel', 'Cancel')}
         </Button>
         <Button type="dashed" onClick={this.handleRotate}>
           <Icon type="retweet" />
         </Button>
         <Button style={{ float: 'right' }} onClick={this.saveImg}>
-          {intl.get('save')}
+          {getIntl(intl, 'base.save', 'Save')}
         </Button>
       </div>
     );
     return (
-      <div>
+      <div className={styles.main}>
         <Upload
           ref={node => {
             this.upload = node;
@@ -194,4 +200,9 @@ class CropperWidget extends Component {
   }
 }
 
-export default CropperWidget;
+export default (props) => (
+  <Media query="(max-width: 599px)">
+    {isMobile => <CropperWidget {...props} isMobile={isMobile} />}
+  </Media>
+)
+  

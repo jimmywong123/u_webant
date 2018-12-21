@@ -13,6 +13,11 @@ export async function getSystem() {
   return request(`${config.api.base}/${encodeURIComponent(path)}`);
 }
 
+export async function getFooter() {
+  const path = '/footer';
+  return request(`${config.api.base}/${encodeURIComponent(path)}`);
+}
+
 export async function getMenu() {
   const path = '/menu';
   return request(`${config.api.base}/${encodeURIComponent(path)}`);

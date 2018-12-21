@@ -11,6 +11,9 @@ import { getSystemPath } from '@/services/base';
 import { getPageQuery } from '@/utils';
 
 import styles from './Header.less';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { Header } = Layout;
 
@@ -76,7 +79,7 @@ class HeaderView extends PureComponent {
   };
 
   handleNoticeClear = noticeKey => {
-    message.success(`${intl.get('cleared')} ${noticeKey ? intl.get(noticeKey) : ''}`);
+    message.success(`${getIntl(intl, 'base.cleared', 'Cleared')} ${getIntl(intl, 'base.noticeKey')}`);
     const { dispatch } = this.props;
     dispatch({
       type: 'global/clearNotices',
@@ -132,7 +135,7 @@ class HeaderView extends PureComponent {
   };
 
   render() {
-    const { isMobile, handleMenuCollapse, fixedHeader, system: {titleKey} } = this.props;
+    const { isMobile, handleMenuCollapse, fixedHeader, system: {title} } = this.props;
     const { visible, initDone, loginPageUrl } = this.state;
     const width = this.getHeadWidth();
 
@@ -146,12 +149,12 @@ class HeaderView extends PureComponent {
               onNoticeClear={this.handleNoticeClear}
               onMenuClick={this.handleMenuClick}
               onNoticeVisibleChange={this.handleNoticeVisibleChange}
-              titleKey={titleKey}
+              title={title}
               {...this.props}
             />
           ) : (
             <TopNavHeader
-              titleKey={titleKey}
+              title={title}
               loginPageUrl={loginPageUrl}
               mode="horizontal"
               onCollapse={handleMenuCollapse}

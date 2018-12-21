@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import { Form, Input, Row, Col, Button, Icon } from 'antd';
 import intl from 'react-intl-universal';
 import { delay } from 'util_react_web';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const FormItem = Form.Item;
 const delay500 = new delay(500);
@@ -36,6 +39,7 @@ class EmailCaptcha extends PureComponent {
     const { checkEmail } = this.props;
     if (checkEmail) {
       const email = e.target.value;
+      
       if (
         email &&
         email.length > 6 &&
@@ -49,9 +53,11 @@ class EmailCaptcha extends PureComponent {
               data: { list },
             } = res;
             if (list.length === 1) {
-              this.setState({ emailTips: intl.get('{email}.registered,.', { email }) });
+              const emailTips = getIntl(intl, 'base.email.registered', `${email} registered, get the captcha to login`, { email })
+              this.setState({ emailTips });
             } else {
-              this.setState({ emailTips: intl.get('{email}.can.use,.get', { email }) });
+              const emailTips = getIntl(intl, 'base.email.can.use', `${email} can use, get the captcha to register`, { email })
+              this.setState({ emailTips });
             }
           });
         });
@@ -112,16 +118,16 @@ class EmailCaptcha extends PureComponent {
             rules: [
               {
                 type: 'email',
-                message: intl.get('it.is.not.valid.e-ma'),
+                message: getIntl(intl, 'base.not.valid.mail', 'It is not valid E-mail!'),
               },
               {
                 required: true,
-                message: intl.get('please.input.your.e-'),
+                message: getIntl(intl, 'base.type.in.mail', 'Please type in your E-mail!'),
               },
             ],
           })(
             <Input
-              placeholder={intl.get('email')}
+              placeholder={getIntl(intl, 'base.email', 'E-mail!')}
               size="large"
               disabled={count > 0}
               prefix={<Icon type="inbox" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -132,28 +138,28 @@ class EmailCaptcha extends PureComponent {
             />
           )}
         </FormItem>
-        <FormItem extra={intl.get(captchaTips)}>
+        <FormItem extra={getIntl(intl, captchaTips, 'E-mail!')}>
           <Row gutter={8}>
-            <Col span={15}>
+            <Col span={13}>
               {getFieldDecorator('captcha', {
-                rules: [{ required: true, message: intl.get('please.input.the.cap') }],
+                rules: [{ required: true, message: getIntl(intl, 'base.please.type.in.the.captcha.you.got', 'Please type in the captcha you got!')}],
               })(
                 <Input
                   size="large"
-                  placeholder={intl.get('captcha')}
+                  placeholder={getIntl(intl, 'base.captcha', 'Captcha')}
                   prefix={<Icon type="message" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   onChange={this.onCaptchaChange}
                 />
               )}
             </Col>
-            <Col span={9}>
+            <Col span={11}>
               <Button
                 disabled={count}
                 style={{ display: 'block', width: '100%' }}
                 size="large"
                 onClick={this.onGetCaptcha}
               >
-                {count ? `${count} s` : intl.get('get.captcha')}
+                {count ? `${count} s` : getIntl(intl, 'base.get.captcha', 'Get captcha')}
               </Button>
             </Col>
           </Row>

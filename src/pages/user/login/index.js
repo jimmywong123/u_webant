@@ -9,6 +9,9 @@ import EmailCaptcha from '@/components/EmailCaptcha';
 import WechatLogin from '../components/WechatLogin';
 import { getPageQuery } from '@/utils';
 import { checkPhone, getSupports, checkEmail } from '@/services/agent';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { TabPane } = Tabs;
 
@@ -118,24 +121,24 @@ class LoginPage extends Component {
     const MobileTab = (
       <span>
         <Icon type="phone" />
-        <span>{type === 'mobile' ? intl.get('login.by.mobile') : ''}</span>
+        <span>{type === 'mobile' ? getIntl(intl, 'loginsys.login.by.mobile', 'Login by mobile') : ''}</span>
       </span>
     );
     const EmailTab = (
       <span>
         <Icon type="mail" />
-        <span>{type === 'mail' ? intl.get('login.by.email') : ''}</span>
+        <span>{type === 'mail' ? getIntl(intl, 'loginsys.login.by.email', 'Login by email') : ''}</span>
       </span>
     );
     const WechatTab = (
       <span>
         <Icon type="wechat" />
-        <span>{type === 'wechat' ? intl.get('login.by.wechat') : ''}</span>
+        <span>{type === 'wechat' ? getIntl(intl, 'loginsys.login.by.wechat', 'Login by wechat') : ''}</span>
       </span>
     );
     return (
       initDone && (
-        <Row type="flex" justify="space-around" align="middle" className="flex">
+        <Row type="flex" justify="space-around" align="middle">
           <Col span={24}>
             <div className={styles.main}>
               <div className={styles.login}>

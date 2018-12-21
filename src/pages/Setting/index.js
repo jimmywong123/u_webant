@@ -15,6 +15,9 @@ import EmailBind from './EmailBind';
 import WechatBind from './WechatBind';
 import Base from './Base';
 import DocumentMete from 'react-document-meta';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 const { Content, Sider } = Layout;
 const { Link } = Anchor;
@@ -23,14 +26,17 @@ class SettingPage extends PureComponent {
 
   render() {
     const { system: { titleKey } } = this.props;
-    const title = `${intl.get('account.center')} - ${intl.get(titleKey)}`;
     
+    const sysTitle = getIntl(intl, titleKey, 'HiredChina.com')
+    const thisTitle = getIntl(intl, 'loginsys.account.center', 'Account center')
+    const title = `${thisTitle} - ${sysTitle}`;
+
     const meta = {
       title,
-      description: intl.get('account.center'),
+      description: thisTitle,
       meta: {
         name: {
-          keywords: intl.get('account.center')
+          keywords: thisTitle
         }
       }
     }
@@ -50,7 +56,7 @@ class SettingPage extends PureComponent {
                 <EmailBind />
               </section>
               <div id="bind-wechat" className={classNames('py2', 'pr0-sm', 'pr5')}>
-                <Divider orientation="right">{intl.get('bind.wechat')}</Divider>
+                <Divider orientation="right">{getIntl(intl, 'loginsys.bind.wechat', 'Bind wechat')}</Divider>
               </div>
               <section className="mb5" style={{ maxWidth: '500px' }}>
                 <WechatBind />
@@ -59,10 +65,10 @@ class SettingPage extends PureComponent {
           </Layout>
           <Sider className="hide-sm" style={{ background: '#fff' }}>
             <Anchor className="pt5">
-              <Link href="#upload-avatar" title={intl.get('update.avatar')} />
-              <Link href="#bind-phone" title={intl.get('bind.phone')} />
-              <Link href="#bind-email" title={intl.get('bind.email')} />
-              <Link href="#bind-wechat" title={intl.get('bind.wechat')} />
+              <Link href="#upload-avatar" title={getIntl(intl, 'loginsys.update.avatar', 'Update avatar')} />
+              <Link href="#bind-phone" title={getIntl(intl, 'loginsys.bind.phone', 'Bind phone')} />
+              <Link href="#bind-email" title={getIntl(intl, 'loginsys.bind.email', 'Bind email')} />
+              <Link href="#bind-wechat" title={getIntl(intl, 'loginsys.bind.wechat', 'Bind wechat')} />
             </Anchor>
           </Sider>
         </Layout>

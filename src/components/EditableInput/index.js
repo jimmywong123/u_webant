@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Input, Tooltip } from 'antd';
 import intl from 'react-intl-universal';
+import { string } from 'util_react_web';
 
+const { getIntl } = string
 class EditableInput extends Component {
   state = {
     inputVisible: false,
@@ -32,6 +34,7 @@ class EditableInput extends Component {
   render() {
     const { inputVisible, inputValue } = this.state;
     const { value, size, width } = this.props;
+    const test = getIntl(intl, 'base.click.on.to.modify', 'Click on to modify')
     return (
       <div>
         {inputVisible && (
@@ -49,9 +52,9 @@ class EditableInput extends Component {
           />
         )}
         {!inputVisible && (
-          <Tooltip placement="bottom" title={intl.get('click.on.the.modify')}>
+          <Tooltip placement="bottom" title={test}>
             <span style={{ cursor: 'pointer' }} onClick={this.showInput}>
-              {value || intl.get('click.on.the.modify')}
+              {value || test}
             </span>
           </Tooltip>
         )}

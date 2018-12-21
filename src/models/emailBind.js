@@ -1,6 +1,9 @@
 import { xxxEmailList, bindEmail, unbindEmail } from '@/services/api';
 import { message } from 'antd';
 import intl from 'react-intl-universal';
+import { string } from 'util_react_web';
+
+const { getIntl } = string;
 
 export default {
   namespace: 'emailBind',
@@ -54,9 +57,9 @@ export default {
         data: { errSms = '', succeed },
       } = yield call(bindEmail, { email, captcha });
       if (succeed) {
-        message.success(intl.get('succeed'));
+        message.success(getIntl(intl, 'base.succeed', 'Succeed'));
       } else if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
       yield put({ type: 'fetch', payload: {} });
     },
@@ -71,9 +74,9 @@ export default {
         data: { succeed, errSms },
       } = JSON.parse(yield call(unbindEmail, email));
       if (succeed) {
-        message.success(intl.get('succeed'));
+        message.success(getIntl(intl, 'base.succeed', 'Succeed'));
       } else if (errSms) {
-        message.error(intl.get(errSms));
+        message.error(getIntl(intl, errSms));
       }
       yield put({ type: 'fetch', payload: { visible: !succeed } });
     },
