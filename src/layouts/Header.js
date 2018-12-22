@@ -72,7 +72,7 @@ class HeaderView extends PureComponent {
 
   getHeadWidth = () => {
     const { isMobile, collapsed, fixedHeader } = this.props;
-    if (isMobile || !fixedHeader || layout === 'topmenu') {
+    if (isMobile || !fixedHeader ) {
       return '100%';
     }
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';

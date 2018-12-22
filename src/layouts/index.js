@@ -97,29 +97,6 @@ class BasicLayout extends PureComponent {
     }
   }
 
-  loginSystemInit() {
-    const {
-      location: { query, pathname },
-      dispatch,
-    } = this.props;
-
-    if (query && query.utoken && query.redirect && pathname === '/Exception/403') {
-      let { redirect } = query;
-      const { utoken } = query;
-      if (redirect.indexOf('?') > 0) {
-        if (redirect.indexOf('utoken=') < 0) {
-          redirect = `${redirect}&utoken=${utoken}`;
-        }
-      } else {
-        redirect = `${redirect}?utoken=${utoken}`;
-      }
-      window.location.href = redirect;
-    }
-    if (query && query.utoken) {
-      LS.setItem('U_token', query.utoken);
-      dispatch(routerRedux.replace(pathname || '/'));
-    }
-  }
 
   getContext() {
     const { location, breadcrumbNameMap } = this.props;
@@ -225,6 +202,30 @@ class BasicLayout extends PureComponent {
       payload: collapsed,
     });
   };
+
+  loginSystemInit() {
+    const {
+      location: { query, pathname },
+      dispatch,
+    } = this.props;
+
+    if (query && query.utoken && query.redirect && pathname === '/Exception/403') {
+      let { redirect } = query;
+      const { utoken } = query;
+      if (redirect.indexOf('?') > 0) {
+        if (redirect.indexOf('utoken=') < 0) {
+          redirect = `${redirect}&utoken=${utoken}`;
+        }
+      } else {
+        redirect = `${redirect}?utoken=${utoken}`;
+      }
+      window.location.href = redirect;
+    }
+    if (query && query.utoken) {
+      LS.setItem('U_token', query.utoken);
+      dispatch(routerRedux.replace(pathname || '/'));
+    }
+  }
 
   render() {
     const {
