@@ -9,7 +9,8 @@ const { getIntl } = string;
 
 const getLink = link => {
   const { key, title, href, blankTarget, icon, img} = link;
-  let retrunValue = getIntl(intl, title, title);
+  const i18nStr = getIntl(intl, title, title)
+  let retrunValue = i18nStr;
   if (icon) {
     retrunValue = (
       <Fragment>
@@ -22,7 +23,7 @@ const getLink = link => {
       <Fragment>
         <h4>{retrunValue}</h4>
         <div className={styles.img}>
-          <img src={img}  />
+          <img src={img} title={i18nStr} />
         </div>
       </Fragment>
     )
@@ -30,7 +31,7 @@ const getLink = link => {
   if (href) {
     retrunValue = (<a
       key={key}
-      title={key}
+      title={i18nStr}
       target={blankTarget ? '_blank' : '_self'}
       href={href}
     >

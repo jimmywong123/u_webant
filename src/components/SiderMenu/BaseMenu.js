@@ -92,11 +92,11 @@ export default class BaseMenu extends PureComponent {
     }
 
     const itemPath = this.conversionPath(item.path);
-    const { target } = item;
+    const { target, rel, rev } = item;
     // Is it a http link
     if (/^https?:\/\//.test(itemPath)) {
       return (
-        <a href={itemPath} target={target}>
+        <a href={itemPath} target={target} rel={rel} rev={rev}>
           {icon}
           <span>{name}</span>
         </a>
@@ -108,6 +108,8 @@ export default class BaseMenu extends PureComponent {
         to={itemPath}
         target={target}
         replace={itemPath === location.pathname}
+        rel={rel} 
+        rev={rev}
         onClick={
           isMobile
             ? () => {
