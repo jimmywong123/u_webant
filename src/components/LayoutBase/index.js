@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import { routerRedux } from 'dva/router';
 
 import { Layout } from 'antd';
 import DocumentMete from 'react-document-meta';
@@ -52,6 +53,7 @@ const screenQuery = {
 class BasicLayout extends PureComponent {
   constructor(props) {
     super(props);
+    this.loginSystemInit();
     this.getPageTitle = memoizeOne(this.getPageTitle);
     this.matchParamsPath = memoizeOne(this.matchParamsPath, isEqual);
   }
@@ -62,6 +64,31 @@ class BasicLayout extends PureComponent {
     const { collapsed, isMobile } = this.props;
     if (isMobile && !preProps.isMobile && !collapsed) {
       this.handleMenuCollapse(false);
+    }
+  }
+
+  loginSystemInit() {
+    const {
+      location: { query, pathname },
+      dispatch,
+      LS
+    } = this.props;
+
+    if (query && query.utoken && query.redirect && pathname === '/Exception/403') {
+      let { redirect } = query;
+      const { utoken } = query;
+      if (redirect.indexOf('?') > 0) {
+        if (redirect.indexOf('utoken=') < 0) {
+          redirect = `${redirect}&utoken=${utoken}`;
+        }
+      } else {
+        redirect = `${redirect}?utoken=${utoken}`;
+      }
+      window.location.href = redirect;
+    }
+    if (query && query.utoken) {
+      LS.setItem('U_token', query.utoken);
+      dispatch(routerRedux.replace(pathname || '/'));
     }
   }
 
