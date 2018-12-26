@@ -92,7 +92,8 @@ export default class BaseMenu extends PureComponent {
     }
 
     const itemPath = this.conversionPath(item.path);
-    const { target, rel, rev } = item;
+    const { blankTarget, rel, rev } = item;
+    const target = blankTarget ? '_blank' : '_self';
     // Is it a http link
     if (/^https?:\/\//.test(itemPath)) {
       return (

@@ -8,7 +8,7 @@ import { string } from 'util_react_web';
 const { getIntl } = string;
 
 const getLink = link => {
-  const { key, title, href, blankTarget, icon, img} = link;
+  const { key, title, href, blankTarget, icon, img, rel, rev} = link;
   const i18nStr = getIntl(intl, title, title)
   let retrunValue = i18nStr;
   if (icon) {
@@ -34,6 +34,8 @@ const getLink = link => {
       title={i18nStr}
       target={blankTarget ? '_blank' : '_self'}
       href={href}
+      rel={rel} 
+      rev={rev}
     >
       {retrunValue}
     </a>)
