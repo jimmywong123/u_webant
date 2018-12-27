@@ -5,7 +5,7 @@ export default {
       "left": [{
         path: '/user',
         component: '../layouts/UserLayout',
-        routes: [
+        children: [
           { path: '/user', redirect: '/user/login' },
           { path: '/user/login', component: './User/Login' },
           { path: '/user/register', component: './User/Register' },
@@ -15,7 +15,7 @@ export default {
         path: '/form',
         icon: 'form',
         name: 'form',
-        routes: [
+        children: [
           {
             path: '/form/basic-form',
             name: 'basicform',
@@ -26,7 +26,7 @@ export default {
             name: 'stepform',
             component: './Forms/StepForm',
             hideChildrenInMenu: true,
-            routes: [
+            children: [
               {
                 path: '/form/step-form',
                 redirect: '/form/step-form/info',
@@ -61,7 +61,7 @@ export default {
         path: '/list',
         icon: 'table',
         name: 'list',
-        routes: [
+        children: [
           {
             path: '/list/table-list',
             name: 'searchtable',
@@ -81,7 +81,7 @@ export default {
             path: '/list/search',
             name: 'searchlist',
             component: './List/List',
-            routes: [
+            children: [
               {
                 path: '/list/search',
                 redirect: '/list/search/articles',
@@ -113,7 +113,7 @@ export default {
         path: '/form',
         icon: 'form',
         name: 'form',
-        routes: [
+        children: [
           {
             path: '/form/basic-form',
             name: 'basicform',
@@ -124,7 +124,7 @@ export default {
             name: 'stepform',
             component: './Forms/StepForm',
             hideChildrenInMenu: true,
-            routes: [
+            children: [
               {
                 path: '/form/step-form',
                 redirect: '/form/step-form/info',
@@ -159,7 +159,7 @@ export default {
         path: '/list',
         icon: 'table',
         name: 'list',
-        routes: [
+        children: [
           {
             path: '/list/table-list',
             name: 'searchtable',
@@ -179,7 +179,7 @@ export default {
             path: '/list/search',
             name: 'searchlist',
             component: './List/List',
-            routes: [
+            children: [
               {
                 path: '/list/search',
                 redirect: '/list/search/articles',
@@ -208,7 +208,7 @@ export default {
         path: '/dashboard',
         name: 'dashboard',
         icon: 'dashboard',
-        routes: [
+        children: [
           {
             path: '/dashboard/analysis',
             name: 'analysis',
@@ -230,12 +230,12 @@ export default {
         name: 'account',
         icon: 'user',
         path: '/account',
-        routes: [
+        children: [
           {
             path: '/account/center',
             name: 'center',
             component: './Account/Center/Center',
-            routes: [
+            children: [
               {
                 path: '/account/center',
                 redirect: '/account/center/articles',
@@ -258,7 +258,7 @@ export default {
             path: '/account/settings',
             name: 'settings',
             component: './Account/Settings/Info',
-            routes: [
+            children: [
               {
                 path: '/account/settings',
                 redirect: '/account/settings/base',
@@ -517,7 +517,7 @@ export default {
           title: 'For Job Seekers',
           href: 'https://pro.ant.design',
           blankTarget: true,
-          sub: [
+          children: [
             {
               key: 'Find Jobs',
               title: 'Find Jobs',
@@ -549,7 +549,7 @@ export default {
           title: 'For Employers',
           href: 'https://github.com/ant-design/ant-design-pro',
           blankTarget: true,
-          sub: [
+          children: [
             {
               key: 'Post Jobs',
               title: 'Post Jobs',
@@ -574,7 +574,7 @@ export default {
           title: 'About Us',
           href: 'https://ant.design',
           blankTarget: true,
-          sub: [
+          children: [
             {
               key: 'Phone',
               title: '(86) 0755 21654992',
@@ -600,7 +600,7 @@ export default {
           title: 'Find Foreigners',
           href: 'https://ant.design',
           blankTarget: true,
-          sub: [
+          children: [
             {
               key: 'Part time',
               title: 'Part time',
@@ -631,7 +631,7 @@ export default {
           title: 'Find Jobs',
           href: 'https://ant.design',
           blankTarget: true,
-          sub: [
+          children: [
             {
               key: 'Part time Jobs',
               title: 'Part time',

@@ -68,10 +68,10 @@ const GlobalFooter = ({ className, links, copyright, social, patents }) => {
                       {getLink(link)}
                     </h3>
                   </li>
-                  {link.sub && (
-                    link.sub.map( subLink => (
+                  {link.children && (
+                    link.children.map( childrenLink => (
                       <li>
-                        {getLink(subLink)}
+                        {getLink(childrenLink)}
                       </li>
                     ))
                   )}

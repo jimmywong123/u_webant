@@ -21,14 +21,14 @@ class Support extends Component {
 
   render() {
     const { initDone, list } = this.state;
-    const { form, name, style, disabled } = this.props;
+    const { form, name, style, disabled, value } = this.props;
     const { getFieldDecorator } = form;
     return (
       initDone &&
       getFieldDecorator(name, {
-        initialValue: list.length > 0 ? list[0].value : '',
+        initialValue: value || (list.length > 0 ? list[0].value : ''),
       })(
-        <Select style={style} disabled={disabled}>
+        <Select labelInValue style={style} disabled={disabled}>
           {list.map(item => (
             <Option key={item.titleKey} value={item.value}>
               {getIntl(intl, item.titleKey)}
