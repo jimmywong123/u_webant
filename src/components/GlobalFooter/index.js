@@ -63,7 +63,7 @@ const GlobalFooter = ({ className, links, copyright, social, patents }) => {
             {links.map(link => (
               <Col span={colSpan}>
                 <ul>
-                  <li>
+                  <li key={`${link.title}${link.href}`}>
                     <h3>
                       {getLink(link)}
                     </h3>
@@ -89,11 +89,11 @@ const GlobalFooter = ({ className, links, copyright, social, patents }) => {
                 )}
                 <a
                   key={link.key}
-                  title={link.key}
+                  title={getIntl(intl, link.title, link.title)}
                   target={link.blankTarget ? '_blank' : '_self'}
                   href={link.href}
                 >
-                  {link.title}
+                  {getIntl(intl, link.title, link.title)}
                 </a>
               </Fragment>
               
