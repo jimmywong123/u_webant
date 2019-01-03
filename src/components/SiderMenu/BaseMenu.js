@@ -2,10 +2,12 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import { Menu, Icon } from 'antd';
 import Link from 'umi/link';
+import intl from 'react-intl-universal';
 import { getMenuMatches } from './SiderMenuUtils';
-import { url} from 'util_react_web';
+import { url, string } from 'util_react_web';
 import styles from './index.less';
 
+const { getIntl } = string
 const { SubMenu } = Menu;
 
 // Allow menu.js config icon as string or ReactNode
@@ -58,10 +60,10 @@ export default class BaseMenu extends PureComponent {
             item.icon ? (
               <span>
                 {getIcon(item.icon)}
-                <span>{name}</span>
+                <span>{getIntl(intl, name, name)}</span>
               </span>
             ) : (
-              name
+              getIntl(intl, name, name)
             )
           }
           key={item.path}
@@ -86,7 +88,7 @@ export default class BaseMenu extends PureComponent {
       return (
         <React.Fragment>
           {icon}
-          <span>{name}</span>
+          <span>{getIntl(intl, name, name)}</span>
         </React.Fragment>
       )
     }
@@ -99,7 +101,7 @@ export default class BaseMenu extends PureComponent {
       return (
         <a href={itemPath} target={target} rel={rel} rev={rev}>
           {icon}
-          <span>{name}</span>
+          <span>{getIntl(intl, name, name)}</span>
         </a>
       );
     }
@@ -120,7 +122,7 @@ export default class BaseMenu extends PureComponent {
         }
       >
         {icon}
-        <span>{name}</span>
+        <span>{getIntl(intl, name, name)}</span>
       </Link>
     );
   };

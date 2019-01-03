@@ -61,7 +61,7 @@ const GlobalFooter = ({ className, links, copyright, social, patents }) => {
           <div className="hide-sm">
             <Row type="flex" justify="space-around" style={{ maxWidth: '1024px', margin: '0 auto'}}>
             {links.map(link => (
-              <Col span={colSpan}>
+              <Col span={colSpan} key={`col${link.title}`}>
                 <ul>
                   <li key={`${link.title}${link.href}`}>
                     <h3>
@@ -83,7 +83,7 @@ const GlobalFooter = ({ className, links, copyright, social, patents }) => {
           
           <div className='block-sm u-hide'>
             {links.map( (link ,i ) => (
-              <Fragment>
+              <Fragment key={`Fragment${link.title}`}>
                 { i > 0 && (
                 <Divider type="vertical" />
                 )}

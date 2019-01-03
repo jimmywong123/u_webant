@@ -8,7 +8,7 @@ const { getIntl } = string;
 const { Option } = Select;
 
 class Support extends Component {
-  state = { initDone: false };
+  state = { initDone: false, list: [] };
 
   componentDidMount() {
     const { typeName, getSupports } = this.props;
@@ -19,23 +19,39 @@ class Support extends Component {
     });
   }
 
+  handleChange = value => {
+    const { name, form } = this.props;
+    form.setFieldsValue({[name]: value})
+  };
+
   render() {
     const { initDone, list } = this.state;
-    const { form, name, style, disabled, value } = this.props;
+    const { form, name, style, disabled, value, notFieldDecorator } = this.props;
     const { getFieldDecorator } = form;
     return (
       initDone &&
-      getFieldDecorator(name, {
-        initialValue: value || (list.length > 0 ? list[0].value : ''),
-      })(
-        <Select labelInValue style={style} disabled={disabled}>
+      notFieldDecorator ? (
+        <Select style={style || { width: 100 }} disabled={disabled} onChange={this.handleChange}>
           {list.map(item => (
             <Option key={item.titleKey} value={item.value}>
-              {getIntl(intl, item.titleKey)}
+              {getIntl(intl, item.titleKey, item.titleKey)}
             </Option>
           ))}
-        </Select>
+        </Select> 
+      ) : (
+        getFieldDecorator(name, {
+          initialValue: value || (list.length > 0 ? list[0].value : ''),
+        })(
+          <Select style={style || { width: 100 }} disabled={disabled}>
+            {list.map(item => (
+              <Option key={item.titleKey} value={item.value}>
+                {getIntl(intl, item.titleKey, item.titleKey)}
+              </Option>
+            ))}
+          </Select>
+        )
       )
+      
     );
   }
 }
