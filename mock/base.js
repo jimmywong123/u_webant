@@ -3,56 +3,40 @@ export default {
     "code": 0,
     "data": {
       "left": [{
-        path: '/user',
-        component: '../layouts/UserLayout',
-        children: [
-          { path: '/user', redirect: '/user/login' },
-          { path: '/user/login', component: './User/Login' },
-          { path: '/user/register', component: './User/Register' },
-          { path: '/user/register-result', component: './User/RegisterResult' },
-        ],
-      },{
         path: '/form',
         icon: 'form',
-        name: 'form',
+        name: 'menu1left',
         children: [
           {
             path: '/form/basic-form',
-            name: 'basicform',
-            component: './Forms/BasicForm',
+            name: 'menu1-1',
+            authority: ['logined'],
           },
           {
             path: '/form/step-form',
-            name: 'stepform',
-            component: './Forms/StepForm',
-            hideChildrenInMenu: true,
+            name: 'menu1-2',
             children: [
               {
-                path: '/form/step-form',
-                redirect: '/form/step-form/info',
-              },
-              {
                 path: '/form/step-form/info',
-                name: 'info',
-                component: './Forms/StepForm/Step1',
+                name: 'menu1-2-1',
+                authority: [1],
               },
               {
                 path: '/form/step-form/confirm',
-                name: 'confirm',
-                component: './Forms/StepForm/Step2',
+                name: 'menu1-2-2',
+                authority: [2],
               },
               {
                 path: '/form/step-form/result',
-                name: 'result',
-                component: './Forms/StepForm/Step3',
+                name: 'menu1-2-3',
+                authority: [3],
               },
             ],
           },
           {
             path: '/form/advanced-form',
             name: 'advancedform',
-            authority: ['admin'],
-            component: './Forms/AdvancedForm',
+            authority: [4],
           },
         ],
       },
@@ -65,22 +49,19 @@ export default {
           {
             path: '/list/table-list',
             name: 'searchtable',
-            component: './List/TableList',
+            authority: [0],
           },
           {
             path: '/list/basic-list',
             name: 'basiclist',
-            component: './List/BasicList',
           },
           {
             path: '/list/card-list',
             name: 'cardlist',
-            component: './List/CardList',
           },
           {
             path: '/list/search',
             name: 'searchlist',
-            component: './List/List',
             children: [
               {
                 path: '/list/search',
@@ -89,17 +70,14 @@ export default {
               {
                 path: '/list/search/articles',
                 name: 'articles',
-                component: './List/Articles',
               },
               {
                 path: '/list/search/projects',
                 name: 'projects',
-                component: './List/Projects',
               },
               {
                 path: '/list/search/applications',
                 name: 'applications',
-                component: './List/Applications',
               },
             ],
           },
@@ -108,7 +86,6 @@ export default {
       "inside": [{
         path: '/list/table-list',
         name: 'searchtable',
-        component: './List/TableList',
       }, {
         path: '/form',
         icon: 'form',
@@ -117,32 +94,22 @@ export default {
           {
             path: '/form/basic-form',
             name: 'basicform',
-            component: './Forms/BasicForm',
           },
           {
             path: '/form/step-form',
             name: 'stepform',
-            component: './Forms/StepForm',
-            hideChildrenInMenu: true,
             children: [
-              {
-                path: '/form/step-form',
-                redirect: '/form/step-form/info',
-              },
               {
                 path: '/form/step-form/info',
                 name: 'info',
-                component: './Forms/StepForm/Step1',
               },
               {
                 path: '/form/step-form/confirm',
                 name: 'confirm',
-                component: './Forms/StepForm/Step2',
               },
               {
                 path: '/form/step-form/result',
                 name: 'result',
-                component: './Forms/StepForm/Step3',
               },
             ],
           },
@@ -150,7 +117,6 @@ export default {
             path: '/form/advanced-form',
             name: 'advancedform',
             authority: ['admin'],
-            component: './Forms/AdvancedForm',
           },
         ],
       },
@@ -163,22 +129,18 @@ export default {
           {
             path: '/list/table-list',
             name: 'searchtable',
-            component: './List/TableList',
           },
           {
             path: '/list/basic-list',
             name: 'basiclist',
-            component: './List/BasicList',
           },
           {
             path: '/list/card-list',
             name: 'cardlist',
-            component: './List/CardList',
           },
           {
             path: '/list/search',
             name: 'searchlist',
-            component: './List/List',
             children: [
               {
                 path: '/list/search',
@@ -187,17 +149,14 @@ export default {
               {
                 path: '/list/search/articles',
                 name: 'articles',
-                component: './List/Articles',
               },
               {
                 path: '/list/search/projects',
                 name: 'projects',
-                component: './List/Projects',
               },
               {
                 path: '/list/search/applications',
                 name: 'applications',
-                component: './List/Applications',
               },
             ],
           },
@@ -212,17 +171,14 @@ export default {
           {
             path: '/dashboard/analysis',
             name: 'analysis',
-            component: './Dashboard/Analysis',
           },
           {
             path: '/dashboard/monitor',
             name: 'monitor',
-            component: './Dashboard/Monitor',
           },
           {
             path: '/dashboard/workplace',
             name: 'workplace',
-            component: './Dashboard/Workplace',
           },
         ],
       },
@@ -232,60 +188,12 @@ export default {
         path: '/account',
         children: [
           {
-            path: '/account/center',
-            name: 'center',
-            component: './Account/Center/Center',
-            children: [
-              {
-                path: '/account/center',
-                redirect: '/account/center/articles',
-              },
-              {
-                path: '/account/center/articles',
-                component: './Account/Center/Articles',
-              },
-              {
-                path: '/account/center/applications',
-                component: './Account/Center/Applications',
-              },
-              {
-                path: '/account/center/projects',
-                component: './Account/Center/Projects',
-              },
-            ],
-          },
-          {
             path: '/account/settings',
             name: 'settings',
-            component: './Account/Settings/Info',
-            children: [
-              {
-                path: '/account/settings',
-                redirect: '/account/settings/base',
-              },
-              {
-                path: '/account/settings/base',
-                component: './Account/Settings/BaseView',
-              },
-              {
-                path: '/account/settings/security',
-                component: './Account/Settings/SecurityView',
-              },
-              {
-                path: '/account/settings/binding',
-                component: './Account/Settings/BindingView',
-              },
-              {
-                path: '/account/settings/notification',
-                component: './Account/Settings/NotificationView',
-              },
-            ],
           },
         ],
       },
-      {
-        component: '404',
-      },]
+      ]
     },
     "msg": "Request success"
   },
@@ -473,7 +381,7 @@ export default {
       "genderType": 0,
       "createdAt": "2018-11-16T02:32:59.000Z",
       "updatedAt": "2018-12-13T03:40:37.000Z",
-      "roles": [0,1,2,3, 4, 5, "logined"]
+      "roles": [0, "logined"]
     },
     "msg": "请求成功",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6Mn0sImV4cCI6MTU0NTIxNDU4NiwiaWF0IjoxNTQ0NjA5Nzg2fQ.o7XepgzaqTgNPIhOXSxpbJmE1eH-3odXHJ_YvUEF88E"

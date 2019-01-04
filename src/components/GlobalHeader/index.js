@@ -28,7 +28,7 @@ export default class GlobalHeader extends PureComponent {
     const { getPageQuery } = url
     let { redirect } = getPageQuery();
     if (redirect) {
-      const redirectUrlParams = new URL(redirect);
+      const redirectUrlParams = new URL(decodeURIComponent(redirect));
       redirect = redirectUrlParams.origin;
     }
 
