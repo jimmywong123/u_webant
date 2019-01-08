@@ -44,13 +44,13 @@ export default {
     }
   },
 
-  'POST /api/v1/login/phone': {
-    "data": {
-      token: 'token',
-      currentAuthority: ['logined'],
-      type: 'email',
-      status: 'normal',
-    }
-  },
+  // 'POST /api/v1/login/phone': {
+  //   "data": {
+  //     token: 'token',
+  //     currentAuthority: ['logined'],
+  //     type: 'phone',
+  //     status: 'normal',
+  //   }
+  // },
 }
 

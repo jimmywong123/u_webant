@@ -365,27 +365,27 @@ export default {
   'GET /api/v1/base/%2Fpath%2Fhcweb': {
     "data": "http://hiredchina.com"
   },
-  'GET /api/v1/base/current': {
-    "code": 0,
-    "data": {
-      "createdAtFormat": "2018-11-16 10:32",
-      "updatedAtFormat": "2018-12-13 11:40",
-      "lastAtFormat": "2018-11-16 10:32",
-      "mobilePhone": "86_13422517821",
-      "email": "thoams@qq.com",
-      "nickname": "Thomas Lau",
-      "lastAt": "2018-11-16T02:32:59.000Z",
-      "isLock": false,
-      "lastLanguage": "zh",
-      "headimgurl": "http://image.hiredchina.com/FpxXVRh34w3zIfxyMG-app_bLRpd",
-      "genderType": 0,
-      "createdAt": "2018-11-16T02:32:59.000Z",
-      "updatedAt": "2018-12-13T03:40:37.000Z",
-      "roles": [0, "logined"]
-    },
-    "msg": "请求成功",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6Mn0sImV4cCI6MTU0NTIxNDU4NiwiaWF0IjoxNTQ0NjA5Nzg2fQ.o7XepgzaqTgNPIhOXSxpbJmE1eH-3odXHJ_YvUEF88E"
-  },
+  // 'GET /api/v1/base/current': {
+  //   "code": 0,
+  //   "data": {
+  //     "createdAtFormat": "2018-11-16 10:32",
+  //     "updatedAtFormat": "2018-12-13 11:40",
+  //     "lastAtFormat": "2018-11-16 10:32",
+  //     "mobilePhone": "86_13422517821",
+  //     "email": "thoams@qq.com",
+  //     "nickname": "Thomas Lau",
+  //     "lastAt": "2018-11-16T02:32:59.000Z",
+  //     "isLock": false,
+  //     "lastLanguage": "zh",
+  //     "headimgurl": "http://image.hiredchina.com/FpxXVRh34w3zIfxyMG-app_bLRpd",
+  //     "genderType": 0,
+  //     "createdAt": "2018-11-16T02:32:59.000Z",
+  //     "updatedAt": "2018-12-13T03:40:37.000Z",
+  //     "roles": [0, "logined"]
+  //   },
+  //   "msg": "请求成功",
+  //   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6Mn0sImV4cCI6MTU0NTIxNDU4NiwiaWF0IjoxNTQ0NjA5Nzg2fQ.o7XepgzaqTgNPIhOXSxpbJmE1eH-3odXHJ_YvUEF88E"
+  // },
   'GET /api/v1/base/%2Fsystem': {
     "code": 0,
     "data": {

@@ -49,14 +49,14 @@ export default {
   'GET /api/v1/setting/phone': {
     "data": ['+(86) 134****7829', '+(95) 12****562']
   },
-  'GET /api/v1/upload/token': {
-    "code": 0,
-    "data": {
-      "token": "9DHqu08vPggvQkuwG49k8kneA9dGSN_SSQwgwOYD:PnfHoeGf53RKkWavvAYeh7Q79nE=:eyJzY29wZSI6ImhpcmVkY2hpbmEiLCJkZWFkbGluZSI6MTU0NDY5MzQzM30=",
-      "origin": "http://image.hiredchina.com"
-    },
-    "msg": "请求成功"
-  },
+  // 'GET /api/v1/upload/token': {
+  //   "code": 0,
+  //   "data": {
+  //     "token": "9DHqu08vPggvQkuwG49k8kneA9dGSN_SSQwgwOYD:PnfHoeGf53RKkWavvAYeh7Q79nE=:eyJzY29wZSI6ImhpcmVkY2hpbmEiLCJkZWFkbGluZSI6MTU0NDY5MzQzM30=",
+  //     "origin": "http://image.hiredchina.com"
+  //   },
+  //   "msg": "请求成功"
+  // },
   'POST /api/v1/setting/phone/:phone': {
     "code": 0,
     "data": {

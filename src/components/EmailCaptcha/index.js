@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Form, Input, Row, Col, Button, Icon } from 'antd';
 import intl from 'react-intl-universal';
-import { delay } from 'util_react_web';
-import { string } from 'util_react_web';
+import { delay, string } from 'util_react_web';
 
 const { getIntl } = string;
 

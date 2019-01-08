@@ -5,7 +5,7 @@ import lrz from 'lrz';
 import intl from 'react-intl-universal';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'cropperjs/dist/cropper.css';
-import request from './request';
+import request from '../_util/request';
 import { string } from 'util_react_web';
 import styles from './index.less';
 import Media from 'react-media';
