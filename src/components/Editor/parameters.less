@@ -1,0 +1,108 @@
+@font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+// default theme color
+@primary-color-02: rgba(47, 84, 235, .2);
+@primary-color: #2F54EB;
+// active and hover color
+@primary-5: #597EF7;
+@primary-6:#1D39C4;
+@border-color: #EFEFEF;
+@max-width: 1320px;
+
+@text-color: #314659;
+@text-color2: #0D1A26;
+@text-color3: #697B8C;
+@second-text-color: #888;
+@border-color: #EBEDF0;
+@border-line-color: #CED4D9;
+@title-color: #222;
+@text-color-light: #FFF;
+@home-title-color: #0D1A26;
+@home-title-p-color: #314659;
+@text-weight-bold: 500;
+@text-weight-normal: 400;
+@text-weight-light: 300;
+
+@gray-bg: #FAFBFC;
+
+@section-background: #fff;
+@section-background-contract: #F6F8FB;
+
+@navigation-height: 88px;
+@navigation-dark-background: #242C37;
+@navigation-dark-color: rgba( 255, 255, 255, 0.6);
+@navigation-dark-highlight-color: rgba( 255, 255, 255, 1);
+@navigation-dark-popover-bg: rgba(25, 31, 39, 0.9);
+@navigation-dark-icon-color: #fff;
+@navigation-dark-input-background: rgba( 255, 255, 255, 1);
+
+@navigation-light-background: #fff;
+@navigation-light-color: @text-color;
+@navigation-light-highlight-color: #222;
+@navigation-light-popover-bg: rgba(255, 255, 255, 0.9);
+@navigation-light-icon-color: @primary-color;
+@navigation-light-input-background: rgba( 255, 255, 255, 1);
+
+@navigation-menu-border-color: rgba(255, 255, 255, 0.4);
+
+
+.clearfix() {
+  display: block;
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+.omit() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.words_limit(@rows: 3) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: @rows;
+  -webkit-box-orient: vertical;
+}
+
+
+.h1() {
+  font-size: 38px;
+  line-height: 46px;
+}
+.h2() {
+  font-size: 24px;
+  line-height: 32px;
+}
+.h3() {
+  font-size: 14px;
+  line-height: 22px;
+}
+.h4() {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+@ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
+@ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
+@duration: .45s;
+@duration-slow: 0.6s;
+@duration-fast: 0.3s;
+
+.page-width() {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 116px;
+  margin: auto;
+  @media screen and (max-width: 767px) {
+    padding: 0 24px;
+  }
+}

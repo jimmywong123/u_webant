@@ -1,0 +1,55 @@
+
+@import "../parameters.less";
+
+.atToolbar {
+  padding: 0;
+  background: @gray-bg;
+  border-color: @border-color;
+  border-bottom: 0;
+  :global {
+    .at-header {
+      .ant-select-selection__rendered {
+        margin-right: 0;
+      }
+    }
+    .header-wrap {
+      width: 120px;
+    }
+    .divider {
+      margin: 0;
+      height: 40px;
+    }
+    .wrap {
+      padding: 9px 9px 7px;
+      display: inline-block;
+      vertical-align: middle;
+      .at-item {
+        border: 1px solid transparent;
+        i {
+          line-height: normal;
+        }
+      }
+      button {
+        color: @text-color;
+        &:hover {
+          border: 1px solid #e8e8e8;
+          transition: all .3s ease-in;
+          border-radius: 3px 3px;
+        }
+        &.ql-active, &.ql-active:hover {
+          background-color: #e8e8e8;
+          border: 1px solid rgba(0,0,0,0);
+          transition: all .3s ease-in;
+          border-radius: 3px 3px;
+        }
+      }
+      .bold {
+        font-size: 12px;
+      }
+    }
+    .header {
+      display: inline-block;
+      width: 80px;
+    }
+  }
+}
