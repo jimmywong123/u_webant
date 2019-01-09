@@ -1,7 +1,9 @@
 import intl from 'react-intl-universal';
 import React, { Component } from 'react';
-import { Select } from 'antd';
+import { Select, Icon } from 'antd';
 import { string } from 'util_react_web';
+import classNames from 'classnames';
+import styles from './index.less';
 
 const { getIntl } = string;
 
@@ -21,33 +23,61 @@ class Support extends Component {
 
   handleChange = value => {
     const { name, form } = this.props;
-    form.setFieldsValue({[name]: value})
+    if (form) {
+      form.setFieldsValue({[name]: value})
+    }
   };
 
   render() {
     const { initDone, list } = this.state;
-    const { form, name, style, disabled, value, notFieldDecorator } = this.props;
+    const { form, name, style, disabled, value, notFieldDecorator, icon, className, ...ohterProps } = this.props;
     const { getFieldDecorator } = form;
+    let maxLength = 0
+    const optionList = list.map(item => {
+      const text = getIntl(intl, item.titleKey)
+      if (text.length > maxLength) {
+        maxLength = text.length
+      }
+      return (
+        <Option key={item.titleKey} value={item.value}>
+          {text}
+        </Option>
+      )
+    })
+    const selectStyle = style || { width: 'auto', minWidth: 100 }
+    let cls = className
+    let suffixIcon
+    if (icon) {
+      cls = classNames(className, styles.prefix )
+      suffixIcon = (<Icon type={icon}/>)
+    }
+    
     return (
       initDone &&
       notFieldDecorator ? (
-        <Select style={style || { width: 100 }} disabled={disabled} onChange={this.handleChange}>
-          {list.map(item => (
-            <Option key={item.titleKey} value={item.value}>
-              {getIntl(intl, item.titleKey, item.titleKey)}
-            </Option>
-          ))}
+        <Select 
+          className={cls}
+          style={selectStyle} 
+          disabled={disabled} 
+          onChange={this.handleChange}
+          labelInValue
+          suffixIcon={suffixIcon}
+          {...ohterProps}  
+        >
+          {optionList}
         </Select> 
       ) : (
         getFieldDecorator(name, {
-          initialValue: value || (list.length > 0 ? list[0].value : ''),
+          initialValue: value,
         })(
-          <Select style={style || { width: 100 }} disabled={disabled}>
-            {list.map(item => (
-              <Option key={item.titleKey} value={item.value}>
-                {getIntl(intl, item.titleKey, item.titleKey)}
-              </Option>
-            ))}
+          <Select 
+            className={cls}
+            style={selectStyle} 
+            disabled={disabled}
+            suffixIcon={suffixIcon}
+            {...ohterProps}  
+          >
+            {optionList}
           </Select>
         )
       )
