@@ -63,3 +63,8 @@ $ npm stop
 
 [egg]: https://eggjs.org
 
+
+待优化：
+1，menu的icon为空时，文字应当居中。
+2，点击menu跳转时不需要刷新整个页面，只需要刷新menu下方的内容。
+
